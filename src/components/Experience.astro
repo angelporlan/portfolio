@@ -1,0 +1,22 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+const EXPERIENCE = [
+  {
+    date: "Marzo 2024 - Junio 2024",
+    title: "Full Stack Developer",
+    company: "sevensystem",
+    description:
+      "Desarrollo full stack con Vue.js y Symfony. Transformé diseños de Figma a código de manera precisa, desarrollé endpoints API CRUD para la gestión eficiente de datos e implementé sistemas de drag and drop y gráficas con Chart.js.",
+  },
+]
+---
+
+<ol class="relative mt-16">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>
