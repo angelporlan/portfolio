@@ -32,5 +32,5 @@ Si deseas ejecutar este proyecto en tu máquina local:
     npm run dev
 
 ## Licencia
-Este archivo README proporciona una descripción clara de tu portafolio, cómo está construido, y da crédito al diseño original de midudev. También incluye instrucciones sobre cómo ejecutar el proyecto localmente y aclara la licencia. ¡Listo para que lo uses!
+Este proyecto está bajo la licencia MIT. El diseño original pertenece a midudev.
 
