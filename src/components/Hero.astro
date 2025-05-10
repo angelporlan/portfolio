@@ -1,68 +1,101 @@
 ---
-const personalImageAlt = "Ángel Porlán"
-import LinkedInIcon from "@/components/icons/LinkedIn.astro"
-import MailIcon from "@/components/icons/Mail.astro"
-import SocialPill from "@/components/SocialPill.astro"
-import CV from "./icons/CV.astro"
-import GitHub from "./icons/GitHub.astro"
-import CodeIcon from "./gsap-decoration/CodeIcon.astro"
+const personalImageAlt = "Ángel Porlán";
+import LinkedInIcon from "@/components/icons/LinkedIn.astro";
+import MailIcon from "@/components/icons/Mail.astro";
+import SocialPill from "@/components/SocialPill.astro";
+import CV from "./icons/CV.astro";
+import GitHub from "./icons/GitHub.astro";
+import CodeIcon from "./gsap-decoration/CodeIcon.astro";
 ---
 
+<script>
+  import { gsap } from "gsap";
+  const text = document.querySelector("h1");
+  const container = document.getElementById("container");
+
+ 
+  gsap.from(text, {
+    y: -100,
+    opacity: 0,
+    rotation: "random(-80, 80)",
+    duration: 1.5,
+    ease: "back",
+    stagger: 0.15,
+  });
+
+  // gsap.registerPlugin(SplitText);
+
+  // document.fonts.ready.then(() => {
+  //   gsap.set(container, { opacity: 1 });
+  //   let split = SplitText.create(".animate-me", { type: "words", aria: "hidden" });  
+
+  //   gsap.from(split.words, {
+  //     opacity: 0,
+  //     duration: 2,
+  //     ease: "sine.out",
+  //     stagger: 0.1,
+  //   });
+  // });
+</script>
+
 <div class="max-w-xl">
-<div class="flex gap-4 mb-4">
-  <div class="relative">
-    <img
-      class="rounded-full shadow-lg size-16"
-      style="width: 100px; height: 100px; object-fit: cover;"
-      src="/fondoazul.png"
-      alt={personalImageAlt}
-    />
-    <div class="absolute top-0 right-0">
-      <CodeIcon></CodeIcon>
+  <div class="flex gap-4 mb-4">
+    <div class="relative">
+      <img
+        class="rounded-full shadow-lg size-16"
+        style="width: 100px; height: 100px; object-fit: cover;"
+        src="/fondoazul.png"
+        alt={personalImageAlt}
+      />
+      <div class="absolute top-0 right-0">
+        <CodeIcon />
+      </div>
+    </div>
+
+    <div class="flex flex-col justify-center">
+      <div class="flex items-center gap-2"></div>
     </div>
   </div>
 
-  <div class="flex flex-col justify-center">
-    <div class="flex items-center gap-2"></div>
-  </div>
-</div>
-
-  <h1
-    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
-  >
-    Buenas, soy Ángel
-  </h1>
-  <p
-    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
-  >
-    <strong
-      >Desarrollador de Aplicaciones Web. </strong
-    > Abarcando tanto el frontend como el backend.
-  </p>
-  <p
-  class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
-  >
-    Tengo experiencia laboral en tecnologías como
-    <strong>Angular, Vue, Symfony y Node</strong>. Actualmente resido 
-    en Lorca, Murcia, España 🇪🇸, pero estoy abierto 
-    a reubicarme si surge una oportunidad interesante.
-  </p>
-  <nav class="flex flex-wrap gap-4 mt-8">
-    <SocialPill href="mailto:angelporlandev@gmail.com">
-      <MailIcon class="size-4" />
-      Contáctame
-    </SocialPill>
-    <SocialPill href="https://linkedin.com/in/angelporlan">
-      <LinkedInIcon class="size-4" />
-      LinkedIn
-    </SocialPill>
+  <div id="container">
+    <h1
+      class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
+    >
+      Buenas, soy Ángel
+    </h1>
+    <p
+      class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+    >
+      <strong class="animate-me">Desarrollador de Aplicaciones Web. </strong> Abarcando tanto el frontend
+      como el backend.
+    </p>
+    <p
+      class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300" class="animate-me"
+    >
+      Tengo experiencia laboral en tecnologías como
+      <strong>Angular, Vue, Symfony y Node</strong>. Actualmente resido en
+      Lorca, Murcia, España 🇪🇸, pero estoy abierto a reubicarme si surge una
+      oportunidad interesante.
+    </p>
+    <nav class="flex flex-wrap gap-4 mt-8" class="animate-me">
+      <SocialPill href="mailto:angelporlandev@gmail.com">
+        <MailIcon class="size-4" />
+        Contáctame
+      </SocialPill>
+      <SocialPill href="https://linkedin.com/in/angelporlan">
+        <LinkedInIcon class="size-4" />
+        LinkedIn
+      </SocialPill>
       <SocialPill href="https://github.com/angelporlan">
-      <GitHub class="size-4" />
-      GitHub
-    </SocialPill>
-    <SocialPill href="https://media.licdn.com/dms/document/media/D4E2DAQE02LLJ1uEZhg/profile-treasury-document-pdf-analyzed/0/1724015473882?e=1729123200&v=beta&t=5ZJCM0uSOvAmhi52HtIFpQQIR3e7Z67YQUQoDqGb4JU">
-      <CV class="size-4" />
-      CV
-    </SocialPill>
-  </nav>
+        <GitHub class="size-4" />
+        GitHub
+      </SocialPill>
+      <SocialPill
+        href="https://media.licdn.com/dms/document/media/D4E2DAQE02LLJ1uEZhg/profile-treasury-document-pdf-analyzed/0/1724015473882?e=1729123200&v=beta&t=5ZJCM0uSOvAmhi52HtIFpQQIR3e7Z67YQUQoDqGb4JU"
+      >
+        <CV class="size-4" />
+        CV
+      </SocialPill>
+    </nav>
+  </div>
 </div>
