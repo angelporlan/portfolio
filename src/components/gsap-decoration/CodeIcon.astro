@@ -1,0 +1,14 @@
+<script>
+  import { gsap } from "gsap";
+  const codeIcon = document.getElementById("code-icon");
+
+  gsap.to(codeIcon, { 
+    rotation: 360,
+    duration: 1,
+    repeat: Infinity,
+    delay: -5,
+    repeatDelay: 10,
+  });
+</script>
+
+<img id="code-icon" src="/favicon.svg" alt="code icon" class="w-8 h-8" />
