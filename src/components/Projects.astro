@@ -8,6 +8,7 @@ import Symfony from "./icons/Symfony.astro"
 import NodeJS from "./icons/Node.astro"
 import VueJS from "./icons/Vue.astro"
 import Angular from "./icons/Angular.astro"
+import OpenAiApi from "./icons/OpenAiApi.astro"
 
 const TAGS = {
   NEXT: {
@@ -40,6 +41,11 @@ const TAGS = {
     class: "bg-[#DD0031] text-white text-white flex items-center",
     icon: Angular,
   },
+  OPENAI_API:{
+    name: "OpenAI API",
+    class: "bg-[#000] text-white text-white flex items-center",
+    icon: OpenAiApi,
+  },
 
 }
 const PROJECTS = [
@@ -60,6 +66,16 @@ const PROJECTS = [
     image: "/projects/stralth.png",
     tags: [TAGS.ANGULAR, TAGS.NodeJS],
   },
+    {
+    title: "CV Harvard Generator",
+    description:
+      "Generador de currículum profesional con un diseño elegante y minimalista, personaliza fuentes, colores manteniendo una estructura clara y profesional",
+    github: "https://github.com/angelporlan/api-cv-generator",
+    link: "https://cv-harvard.vercel.app/",
+    image: "/projects/cv_harvard.png",
+    tags: [TAGS.OPENAI_API],
+  },
+
 ]
 ---
 
