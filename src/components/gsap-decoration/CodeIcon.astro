@@ -1,14 +1,21 @@
+---
+const { urlimage } = Astro.props;
+---
+
+<img id="code-icon" src={urlimage} alt="code icon" class="w-8 h-8" />
+
 <script>
   import { gsap } from "gsap";
+
   const codeIcon = document.getElementById("code-icon");
 
-  gsap.to(codeIcon, { 
-    rotation: 360,
-    duration: 1,
-    repeat: Infinity,
-    delay: -5,
-    repeatDelay: 10,
-  });
+  if (codeIcon) {
+    gsap.to(codeIcon, { 
+      rotation: 360,
+      duration: 1,
+      repeat: Infinity,
+      delay: 0,
+      repeatDelay: 0,
+    });
+  }
 </script>
-
-<img id="code-icon" src="/favicon.svg" alt="code icon" class="w-8 h-8" />
