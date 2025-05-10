@@ -16,6 +16,7 @@
     "astro": "^4.4.5",
     "astro-robots-txt": "1.0.0",
     "gsap": "^3.13.0",
+    "split-type": "^0.3.4",
     "tailwindcss": "3.4.1",
     "typescript": "5.3.3"
   }
