@@ -10,10 +10,11 @@ import CodeIcon from "./gsap-decoration/CodeIcon.astro";
 
 <script>
   import { gsap } from "gsap";
+  import SplitType from "split-type";
   const text = document.querySelector("h1");
   const container = document.getElementById("container");
 
- 
+  // animacion del titulo
   gsap.from(text, {
     y: -100,
     opacity: 0,
@@ -23,19 +24,18 @@ import CodeIcon from "./gsap-decoration/CodeIcon.astro";
     stagger: 0.15,
   });
 
-  // gsap.registerPlugin(SplitText);
+  // animacion del texto
+  document.fonts.ready.then(() => {
+    gsap.set(container, { opacity: 1 });
+    let split = new SplitType("#animate-me", { types: "words" });
 
-  // document.fonts.ready.then(() => {
-  //   gsap.set(container, { opacity: 1 });
-  //   let split = SplitText.create(".animate-me", { type: "words", aria: "hidden" });  
-
-  //   gsap.from(split.words, {
-  //     opacity: 0,
-  //     duration: 2,
-  //     ease: "sine.out",
-  //     stagger: 0.1,
-  //   });
-  // });
+    gsap.from(split.words, {
+      opacity: 0,
+      duration: 1,
+      ease: "sine.out",
+      stagger: 0.01,
+    });
+  });
 </script>
 
 <div class="max-w-xl">
@@ -64,20 +64,23 @@ import CodeIcon from "./gsap-decoration/CodeIcon.astro";
       Buenas, soy Ángel
     </h1>
     <p
+      id="animate-me"
       class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
     >
-      <strong class="animate-me">Desarrollador de Aplicaciones Web. </strong> Abarcando tanto el frontend
+      <strong>Desarrollador de Aplicaciones Web. </strong> Abarcando tanto el frontend
       como el backend.
     </p>
     <p
-      class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300" class="animate-me"
+      id="animate-me"
+      class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+      class="animate-me"
     >
       Tengo experiencia laboral en tecnologías como
       <strong>Angular, Vue, Symfony y Node</strong>. Actualmente resido en
       Lorca, Murcia, España 🇪🇸, pero estoy abierto a reubicarme si surge una
       oportunidad interesante.
     </p>
-    <nav class="flex flex-wrap gap-4 mt-8" class="animate-me">
+    <nav class="flex flex-wrap gap-4 mt-8">
       <SocialPill href="mailto:angelporlandev@gmail.com">
         <MailIcon class="size-4" />
         Contáctame
