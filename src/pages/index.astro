@@ -12,6 +12,7 @@ import Hero from "@/components/Hero.astro"
 import TitleSection from "@/components/TitleSection.astro"
 import Credits from "@/components/Credits.astro"
 import CreditsSvg from "@/components/icons/Credits.astro"
+import Ball from "@/components/gsap-decoration/Ball.astro"
 ---
 
 <Layout
@@ -19,6 +20,7 @@ import CreditsSvg from "@/components/icons/Credits.astro"
   description="Contrata a Ángel para crear tu aplicación web. Desarrollador Web. Especializado en crear aplicaciones únicas."
 >
   <main class="px-4">
+    <Ball/>
     <SectionContainer class="py-16 md:py-36">
       <Hero>
       </slot>

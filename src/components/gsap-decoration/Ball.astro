@@ -1,0 +1,104 @@
+<img class="ball w-[125px] h-[125px] rounded-full box-border will-change-transform absolute" src="svg/keyboard-enter.svg" alt="key" />
+
+<script>
+import gsap from 'gsap';
+import { Draggable } from 'gsap/Draggable';
+import { InertiaPlugin } from 'gsap/InertiaPlugin';
+
+gsap.registerPlugin(Draggable, InertiaPlugin); 
+
+console.clear();
+
+const friction: number = -0.5;
+const ball = document.querySelector(".ball") as HTMLElement;
+const ballProps = gsap.getProperty(ball);
+const radius: number = (ball as HTMLElement).getBoundingClientRect().width / 2;
+let vw: number = window.innerWidth;
+let vh: number = window.innerHeight;
+
+
+// elijo la posicion inicial de la bola
+let initialX: number = vw - radius * 2; 
+let initialY: number = radius * 2; 
+
+if (window.innerWidth > 770) {
+    initialX = vw - radius * 5; 
+    initialY = radius * 3; 
+}
+
+if (window.innerWidth > 1400) {
+    initialX = vw - radius * 9;
+    initialY = radius * 3; 
+}
+
+gsap.defaults({
+    overwrite: true
+});
+
+gsap.set(ball, {
+    xPercent: -50,
+    yPercent: -50,
+    x: initialX,
+    y: initialY
+});
+
+const draggable = new Draggable(ball, {
+    bounds: window,
+    onPress() {
+        gsap.killTweensOf(ball);
+        this.update();
+    },
+    onDragEnd: animateBounce,
+    onDragEndParams: []
+});
+
+window.addEventListener("resize", () => {
+    vw = window.innerWidth;
+    vh = window.innerHeight;
+});
+
+function animateBounce(x: string | number = "+=0", y: string | number = "+=0", vx: string | number = "auto", vy: string | number = "auto"): void {
+    gsap.fromTo(ball, { x, y }, {
+        inertia: {
+            x: vx,
+            y: vy,
+        },
+        onUpdate: checkBounds
+    });
+}
+
+function checkBounds(): void {
+    const r: number = radius;
+    const x: number = ballProps("x") as number;
+    const y: number = ballProps("y") as number;
+    let xPos: number = x;
+    let yPos: number = y;
+    let hitting: boolean = false;
+    let vx: number = InertiaPlugin.getVelocity(ball, "x");
+    let vy: number = InertiaPlugin.getVelocity(ball, "y"); 
+
+    if (x + r > vw) {
+        xPos = vw - r;
+        vx *= friction;
+        hitting = true;
+    } else if (x - r < 0) {
+        xPos = r;
+        vx *= friction;
+        hitting = true;
+    }
+
+    if (y + r > vh) {
+        yPos = vh - r;
+        vy *= friction;
+        hitting = true;
+    } else if (y - r < 0) {
+        yPos = r;
+        vy *= friction;
+        hitting = true;
+    }
+
+    if (hitting) {
+        animateBounce(xPos, yPos, vx, vy);
+    }
+}
+</script>
