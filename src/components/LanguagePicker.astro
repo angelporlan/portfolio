@@ -1,0 +1,75 @@
+---
+import SpainFlag from "./icons/Spain.astro";
+import UKFlag from "./icons/UK.astro";
+import { languages } from "../i18n/ui";
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const LOCALES: Record<string, { name: string; icon: any; href: string }> = {
+    es: {
+        name: "Español",
+        icon: SpainFlag,
+        href: "/",
+    },
+    en: {
+        name: "English",
+        icon: UKFlag,
+        href: "/en",
+    },
+};
+
+const currentLocaleData = LOCALES[lang];
+const otherLocales = Object.entries(LOCALES).filter(([key]) => key !== lang);
+---
+
+<div class="relative inline-block text-left">
+    <div class="group">
+        <button
+            type="button"
+            class="inline-flex justify-center items-center w-full gap-x-2 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-white transition-all"
+            aria-expanded="true"
+            aria-haspopup="true"
+        >
+            <currentLocaleData.icon class="size-4 rounded-sm" />
+        </button>
+        <ul
+            class="absolute right-0 z-10 hidden group-hover:block pt-2 w-32 origin-top-right"
+        >
+            <div
+                class="py-1 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            >
+                {
+                    otherLocales.map(([key, locale]) => (
+                        <li>
+                            <a
+                                href={locale.href}
+                                class="flex items-center gap-x-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                            >
+                                <locale.icon class="size-4 rounded-sm" />
+                                {locale.name}
+                            </a>
+                        </li>
+                    ))
+                }
+            </div>
+        </ul>
+    </div>
+</div>
+
+<style>
+    ul {
+        animation: fadeIn 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
