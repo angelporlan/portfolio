@@ -6,6 +6,10 @@ import SocialPill from "@/components/SocialPill.astro";
 import CV from "./icons/CV.astro";
 import GitHub from "./icons/GitHub.astro";
 import CodeIcon from "./gsap-decoration/CodeIcon.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <script>
@@ -48,7 +52,7 @@ import CodeIcon from "./gsap-decoration/CodeIcon.astro";
         alt={personalImageAlt}
       />
       <div class="absolute top-0 right-0">
-        <CodeIcon urlimage="favicon.svg"/>
+        <CodeIcon urlimage="favicon.svg" />
       </div>
     </div>
 
@@ -61,29 +65,27 @@ import CodeIcon from "./gsap-decoration/CodeIcon.astro";
     <h1
       class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
     >
-      Buenas, soy Ángel
+      {t("hero.title")}
     </h1>
     <p
       id="animate-me"
       class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
     >
-      <strong>Desarrollador de Aplicaciones Web. </strong> Abarcando tanto el frontend
-      como el backend.
+      <strong>{t("hero.description1")}</strong>
+      {t("hero.description2")}
     </p>
     <p
       id="animate-me"
       class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
       class="animate-me"
     >
-      Tengo experiencia laboral en tecnologías como
-      <strong>Angular, Vue, Symfony y Node</strong>. Actualmente resido en
-      Lorca, Murcia, España 🇪🇸, pero estoy abierto a reubicarme si surge una
-      oportunidad interesante.
+      {t("hero.experience")}
+      <strong>Angular, Vue, Symfony y Node</strong>. {t("hero.location")}
     </p>
     <nav class="flex flex-wrap gap-4 mt-8">
       <SocialPill href="mailto:angelporlandev@gmail.com">
         <MailIcon class="size-4" />
-        Contáctame
+        {t("hero.contact")}
       </SocialPill>
       <SocialPill href="https://linkedin.com/in/angelporlan">
         <LinkedInIcon class="size-4" />
@@ -93,9 +95,7 @@ import CodeIcon from "./gsap-decoration/CodeIcon.astro";
         <GitHub class="size-4" />
         GitHub
       </SocialPill>
-      <SocialPill
-        href="/pdf/CV_Angel.pdf"
-      >
+      <SocialPill href="/pdf/CV_Angel.pdf">
         <CV class="size-4" />
         CV
       </SocialPill>
