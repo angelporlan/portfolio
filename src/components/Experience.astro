@@ -1,13 +1,17 @@
 ---
-import ExperienceItem from "./ExperienceItem.astro"
-const EXPERIENCE = [
+import ExperienceItem from "./ExperienceItem.astro";
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const EXPERIENCE_ES = [
   {
     date: "Abril 2025 - Actualidad",
     title: "Full Stack Developer",
     company: "ENAE Business School",
     description:
-      "Desarrollo de landing pages optimizadas para conversión y rendimiento. Mantenimiento y mejora continua de sitios web existentes. Desarrollo de integraciones personalizadas entre servicios externos y Dynamics 365, utilizando Laravel y PHP para extender funcionalidades y automatizar procesos",
-  },  
+      "Desarrollo de integraciones personalizadas entre servicios externos y Dynamics 365, utilizando Laravel y PHP para extender funcionalidades, automatizar procesos de negocio, lograr sincronización real-time y potenciar trazabilidad.",
+  },
   {
     date: "Marzo 2024 - Febrero 2025",
     title: "Full Stack Developer",
@@ -15,7 +19,26 @@ const EXPERIENCE = [
     description:
       "Implementación de interfaces complejas a partir de diseños en Figma, con alta fidelidad visual y enfoque en rendimiento. Desarrollo de módulos reutilizables y escalables. Diseño e integración de APIs RESTful robustas para operaciones CRUD, con validaciones avanzadas y control de acceso basado en roles",
   },
-]
+];
+
+const EXPERIENCE_EN = [
+  {
+    date: "April 2025 - Present",
+    title: "Full Stack Developer",
+    company: "ENAE Business School",
+    description:
+      "Development of custom integrations between external services and Dynamics 365, using Laravel and PHP to extend functionalities, automate business processes, achieve real-time synchronization and enhance traceability.",
+  },
+  {
+    date: "March 2024 - February 2025",
+    title: "Full Stack Developer",
+    company: "SevenSystem",
+    description:
+      "Implementation of complex interfaces from Figma designs, with high visual fidelity and focus on performance. Development of reusable and scalable modules. Design and integration of robust RESTful APIs for CRUD operations, with advanced validations and role-based access control",
+  },
+];
+
+const EXPERIENCE = lang === "en" ? EXPERIENCE_EN : EXPERIENCE_ES;
 ---
 
 <ol class="relative mt-16">
