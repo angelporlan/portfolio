@@ -1,27 +1,86 @@
 ---
- const personalImageAlt = "Ángel Porlán"
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const personalImageAlt = "Ángel Porlán";
 ---
 
-<article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
+<article
+  class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row"
+>
   <div
     class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
   >
-<p>
-  Soy <strong>Ángel Porlán</strong>, desarrollador <strong>full stack</strong> con experiencia en la creación de aplicaciones web funcionales y optimizadas. Mi enfoque va más allá del código: busco transformar ideas en soluciones digitales eficientes.
-</p>
+    {
+      lang === "es" ? (
+        <>
+          <p>
+            Soy <strong>Ángel Porlán</strong>, desarrollador{" "}
+            <strong>full stack</strong> con experiencia en la creación de
+            aplicaciones web funcionales y optimizadas. Mi enfoque va más allá
+            del código: busco transformar ideas en soluciones digitales
+            eficientes.
+          </p>
 
-<p>
-  Desarrollé desde cero una <strong>aplicación web para la gestión del hogar</strong>, optimizada para todos los dispositivos. Implementé <strong>control de inventario</strong>, <strong>gestión de fechas de caducidad</strong> y <strong>sincronización en la nube</strong>, mejorando la organización y reduciendo el desperdicio de alimentos. Este proyecto me permitió afianzar mis habilidades en desarrollo full stack y optimización de la experiencia de usuario.
-</p>
+          <p>
+            Desarrollé desde cero una{" "}
+            <strong>aplicación web para la gestión del hogar</strong>,
+            optimizada para todos los dispositivos. Implementé{" "}
+            <strong>control de inventario</strong>,{" "}
+            <strong>gestión de fechas de caducidad</strong> y{" "}
+            <strong>sincronización en la nube</strong>, mejorando la
+            organización y reduciendo el desperdicio de alimentos. Este proyecto
+            me permitió afianzar mis habilidades en desarrollo full stack y
+            optimización de la experiencia de usuario.
+          </p>
 
-<p>
-  He trabajado en <strong>empresas IT</strong> y como <strong>freelancer</strong>, desarrollando aplicaciones web funcionales y adaptadas a las necesidades del cliente. Desde la <strong>optimización de interfaces</strong> hasta la creación de soluciones full stack, mi enfoque siempre ha sido entregar productos de calidad, eficientes y escalables.
-</p>
+          <p>
+            He trabajado en <strong>empresas IT</strong> y como{" "}
+            <strong>freelancer</strong>, desarrollando aplicaciones web
+            funcionales y adaptadas a las necesidades del cliente. Desde la{" "}
+            <strong>optimización de interfaces</strong> hasta la creación de
+            soluciones full stack, mi enfoque siempre ha sido entregar productos
+            de calidad, eficientes y escalables.
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            I'm <strong>Ángel Porlán</strong>, a <strong>full stack</strong>{" "}
+            developer with experience in creating functional and optimized web
+            applications. My approach goes beyond code: I seek to transform
+            ideas into efficient digital solutions.
+          </p>
 
+          <p>
+            I developed from scratch a{" "}
+            <strong>home management web application</strong>, optimized for all
+            devices. I implemented <strong>inventory control</strong>,{" "}
+            <strong>expiration date management</strong>, and{" "}
+            <strong>cloud synchronization</strong>, improving organization and
+            reducing food waste. This project allowed me to strengthen my skills
+            in full stack development and user experience optimization.
+          </p>
+
+          <p>
+            I have worked in <strong>IT companies</strong> and as a{" "}
+            <strong>freelancer</strong>, developing functional web applications
+            tailored to client needs. From{" "}
+            <strong>interface optimization</strong> to creating full stack
+            solutions, my focus has always been on delivering quality,
+            efficient, and scalable products.
+          </p>
+        </>
+      )
+    }
   </div>
 
-  <img width="200" height="200" src="/fondoblanco.jpeg" alt={personalImageAlt} class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20 " style="object-position: 50% 50%">
-
+  <img
+    width="200"
+    height="200"
+    src="/fondoblanco.jpeg"
+    alt={personalImageAlt}
+    class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20"
+    style="object-position: 50% 50%"
+  />
 </article>
-
-
