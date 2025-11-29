@@ -1,28 +1,38 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro"
+import ThemeToggle from "./ThemeToggle.astro";
+import {
+  getLangFromUrl,
+  useTranslations,
+  useTranslatedPath,
+} from "../i18n/utils";
+import LanguagePicker from "./LanguagePicker.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 
 const navItems = [
   {
-    title: "Experiencia",
+    title: t("nav.experience"),
     label: "experiencia",
-    url: "/#experiencia",
+    url: translatePath("/#experiencia"),
   },
   {
-    title: "Proyectos",
+    title: t("nav.projects"),
     label: "proyectos",
-    url: "/#proyectos",
+    url: translatePath("/#proyectos"),
   },
   {
-    title: "Sobre mí",
+    title: t("nav.about"),
     label: "sobre-mi",
-    url: "/#sobre-mi",
+    url: translatePath("/#sobre-mi"),
   },
   {
-    title: "Contacto",
+    title: t("nav.contact"),
     label: "contacto",
     url: "mailto:angelporlandev@gmail.com",
   },
-]
+];
 ---
 
 <header
@@ -43,49 +53,50 @@ const navItems = [
       ))
     }
     <ThemeToggle />
+    <LanguagePicker />
   </nav>
 </header>
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section")
-    const navItems = document.querySelectorAll("header nav a")
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll("header nav a");
 
     const callback = (entries: any[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-blue-500")
+              item.classList.add("text-blue-500");
             } else {
-              item.classList.remove("text-blue-500")
+              item.classList.remove("text-blue-500");
             }
-          })
+          });
         }
-      })
-    }
+      });
+    };
 
     const observer = new IntersectionObserver(callback, {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
-    })
+    });
 
     sections.forEach((section) => {
-      observer.observe(section)
-    })
+      observer.observe(section);
+    });
 
     // Cleanup function
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
-        observer.disconnect()
+        observer.disconnect();
       } else {
         sections.forEach((section) => {
-          observer.observe(section)
-        })
+          observer.observe(section);
+        });
       }
-    }
-  })
+    };
+  });
 </script>
 
 <style>
