@@ -86,7 +86,6 @@ const navItems = [
       observer.observe(section);
     });
 
-    // Cleanup function
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
         observer.disconnect();
@@ -106,16 +105,35 @@ const navItems = [
     animation-range: 0 100px;
   }
 
-  nav {
-    @apply dark:bg-gray-800/90 bg-white/50;
-  }
-
   @keyframes nav-shadown {
     0% {
-      @apply dark:bg-gray-800/0 bg-white/0;
+      background-color: transparent;
+      backdrop-filter: blur(0px);
+      border: 1px solid transparent;
     }
     to {
-      @apply shadow-lg ring-1 backdrop-blur ring-white/10;
+      box-shadow:
+        0 5px 50px -5px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(0, 0, 0, 0.1);
+
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+  }
+  :global(.dark) @keyframes nav-shadown {
+    0% {
+      background-color: transparent;
+      backdrop-filter: blur(0px);
+    }
+    to {
+      box-shadow:
+        0 10px 40px -10px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
   }
 </style>
