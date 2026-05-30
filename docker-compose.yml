@@ -3,7 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: development
     container_name: portfolio-website
     ports:
-      - "8080:80"
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - /app/node_modules
     restart: unless-stopped

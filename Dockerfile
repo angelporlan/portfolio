@@ -1,30 +1,23 @@
-# --- Etapa 1: Build ---
-FROM node:20-alpine AS builder
+# --- Etapa 1: Dependencias ---
+FROM node:20-alpine AS dependencies
 WORKDIR /app
-
-# Copiar archivos de dependencias
 COPY package*.json ./
-
-# Instalar dependencias
 RUN npm install
 
-# Copiar el resto del código del proyecto
+# --- Etapa 2: Desarrollo (para recarga en vivo) ---
+FROM dependencies AS development
 COPY . .
+EXPOSE 4321
+CMD ["npm", "run", "dev", "--", "--host"]
 
-# Compilar la aplicación estática
+# --- Etapa 3: Build para Producción ---
+FROM dependencies AS builder
+COPY . .
 RUN npm run build
 
-# --- Etapa 2: Runner ---
+# --- Etapa 4: Runner (Servidor Nginx para producción) ---
 FROM nginx:stable-alpine AS runner
-
-# Copiar la configuración optimizada de Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
-
-# Copiar los archivos estáticos construidos desde la etapa builder
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Exponer el puerto por defecto de Nginx
 EXPOSE 80
-
-# Iniciar Nginx en primer plano
 CMD ["nginx", "-g", "daemon off;"]
