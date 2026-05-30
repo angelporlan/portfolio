@@ -3,70 +3,87 @@ import NodeJS from "./icons/Node.astro";
 import Angular from "./icons/Angular.astro";
 import OpenAiApi from "./icons/OpenAiApi.astro";
 import Sparkles from "./icons/Sparkles.astro";
+import Python from "./icons/Python.astro";
+import NextJS from "./icons/NextJS.astro";
+import Tailwind from "./icons/Tailwind.astro";
 import { getLangFromUrl } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 
 const STACK_ES = {
   core: {
-    title: "Core",
+    title: "Core (Backend & Datos)",
     items: [
-      { name: "Node.js", icon: NodeJS, color: "text-[#339933]" },
+      { name: "Node.js (NestJS)", icon: NodeJS, color: "text-[#339933]" },
+      { name: "Python (FastAPI)", icon: Python, color: "text-[#3776AB]" },
       { name: "PHP (Laravel)", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M10 13.5v-3.5h2c.7 0 1 .3 1 1v0c0 .7 -.3 1 -1 1h-2" /><path d="M14 10v4h2" />`, color: "text-[#777BB4]" },
-      { name: "SQL / MySQL", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 16 0v-6" /><path d="M4 12v6a8 3 0 0 0 16 0v-6" />`, color: "text-[#00758F]" }
+      { name: "PostgreSQL / MySQL", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 16 0v-6" /><path d="M4 12v6a8 3 0 0 0 16 0v-6" />`, color: "text-[#336791]" }
     ]
   },
   frontend: {
     title: "Frontend",
     items: [
-      { name: "Angular", icon: Angular, color: "text-[#DD0031]" }
+      { name: "React / Next.js", icon: NextJS, color: "text-black dark:text-white" },
+      { name: "Angular", icon: Angular, color: "text-[#DD0031]" },
+      { name: "TypeScript", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 17.5c.3 0 .6 -.1 .9 -.2l.1 -.1c.3 -.2 .5 -.5 .5 -.9v-1.3c0 -.5 -.4 -.9 -.9 -.9h-1.6c-.3 0 -.5 -.2 -.5 -.5v-.5c0 -.3 .2 -.5 .5 -.5h3" /><path d="M9 9h4" /><path d="M11 9v10" />`, color: "text-[#3178C6]" },
+      { name: "Tailwind CSS", icon: Tailwind, color: "text-[#38BDF8]" }
     ]
   },
   ai: {
-    title: "AI & Tools",
+    title: "AI & Integraciones",
     items: [
-      { name: "OpenAI API / LLMs", icon: OpenAiApi, color: "text-[#000000] dark:text-white" },
-      { name: "Multi-agent workflows", icon: Sparkles, color: "text-[#8B5CF6]" },
-      { name: "Codex / AI-assisted", icon: Sparkles, color: "text-[#EC4899]" }
+      { name: "OpenAI & Anthropic APIs", icon: OpenAiApi, color: "text-[#000000] dark:text-white" },
+      { name: "Agentic AI Orchestration", icon: Sparkles, color: "text-[#8B5CF6]" },
+      { name: "RAG Architectures", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M12 14m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M15 17l2.5 2.5" />`, color: "text-[#0D9488]" },
+      { name: "Vector Databases", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3" /><path d="M4 6v6c0 1.657 3.582 3 8 3s8 -1.343 8 -3v-6" /><path d="M4 12v6c0 1.657 3.582 3 8 3s8 -1.343 8 -3v-6" /><path d="M12 9v12" /><path d="M8 7v10" /><path d="M16 7v10" />`, color: "text-[#6366F1]" }
     ]
   },
-  other: {
-    title: "Otros",
+  cloud: {
+    title: "Cloud & Herramientas",
     items: [
-      { name: "REST APIs", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h18" /><path d="M12 3v18" /><path d="M7.5 7.5l9 9" /><path d="M7.5 16.5l9 -9" />`, color: "text-blue-500" },
-      { name: "Git", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M18 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 8v8" /><path d="M8 6h6v4" />`, color: "text-[#F05032]" }
+      { name: "Cloud (AWS / Azure)", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12" />`, color: "text-[#FF9900]" },
+      { name: "Docker", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3l8 4.5v9l-8 4.5L4 16.5v-9L12 3z M12 12l8-4.5 M12 12v9 M12 12L4 7.5" />`, color: "text-[#2496ED]" },
+      { name: "REST APIs / WebSockets", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M12 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M18 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M12 8v8" /><path d="M8 12h8" />`, color: "text-[#10B981]" },
+      { name: "Git / CI-CD", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M18 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 8v8" /><path d="M8 6h6v4" />`, color: "text-[#F05032]" }
     ]
   }
 };
 
 const STACK_EN = {
   core: {
-    title: "Core",
+    title: "Core (Backend & Data)",
     items: [
-      { name: "Node.js", icon: NodeJS, color: "text-[#339933]" },
+      { name: "Node.js (NestJS)", icon: NodeJS, color: "text-[#339933]" },
+      { name: "Python (FastAPI)", icon: Python, color: "text-[#3776AB]" },
       { name: "PHP (Laravel)", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M10 13.5v-3.5h2c.7 0 1 .3 1 1v0c0 .7 -.3 1 -1 1h-2" /><path d="M14 10v4h2" />`, color: "text-[#777BB4]" },
-      { name: "SQL / MySQL", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 16 0v-6" /><path d="M4 12v6a8 3 0 0 0 16 0v-6" />`, color: "text-[#00758F]" }
+      { name: "PostgreSQL / MySQL", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 16 0v-6" /><path d="M4 12v6a8 3 0 0 0 16 0v-6" />`, color: "text-[#336791]" }
     ]
   },
   frontend: {
     title: "Frontend",
     items: [
-      { name: "Angular", icon: Angular, color: "text-[#DD0031]" }
+      { name: "React / Next.js", icon: NextJS, color: "text-black dark:text-white" },
+      { name: "Angular", icon: Angular, color: "text-[#DD0031]" },
+      { name: "TypeScript", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 17.5c.3 0 .6 -.1 .9 -.2l.1 -.1c.3 -.2 .5 -.5 .5 -.9v-1.3c0 -.5 -.4 -.9 -.9 -.9h-1.6c-.3 0 -.5 -.2 -.5 -.5v-.5c0 -.3 .2 -.5 .5 -.5h3" /><path d="M9 9h4" /><path d="M11 9v10" />`, color: "text-[#3178C6]" },
+      { name: "Tailwind CSS", icon: Tailwind, color: "text-[#38BDF8]" }
     ]
   },
   ai: {
-    title: "AI & Tools",
+    title: "AI & Integrations",
     items: [
-      { name: "OpenAI API / LLMs", icon: OpenAiApi, color: "text-[#000000] dark:text-white" },
-      { name: "Multi-agent workflows", icon: Sparkles, color: "text-[#8B5CF6]" },
-      { name: "Codex / AI-assisted", icon: Sparkles, color: "text-[#EC4899]" }
+      { name: "OpenAI & Anthropic APIs", icon: OpenAiApi, color: "text-[#000000] dark:text-white" },
+      { name: "Agentic AI Orchestration", icon: Sparkles, color: "text-[#8B5CF6]" },
+      { name: "RAG Architectures", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14 3v4a1 1 0 0 0 1 1h4" /><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" /><path d="M12 14m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M15 17l2.5 2.5" />`, color: "text-[#0D9488]" },
+      { name: "Vector Databases", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3" /><path d="M4 6v6c0 1.657 3.582 3 8 3s8 -1.343 8 -3v-6" /><path d="M4 12v6c0 1.657 3.582 3 8 3s8 -1.343 8 -3v-6" /><path d="M12 9v12" /><path d="M8 7v10" /><path d="M16 7v10" />`, color: "text-[#6366F1]" }
     ]
   },
-  other: {
-    title: "Others",
+  cloud: {
+    title: "Cloud & Tools",
     items: [
-      { name: "REST APIs", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h18" /><path d="M12 3v18" /><path d="M7.5 7.5l9 9" /><path d="M7.5 16.5l9 -9" />`, color: "text-blue-500" },
-      { name: "Git", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M18 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 8v8" /><path d="M8 6h6v4" />`, color: "text-[#F05032]" }
+      { name: "Cloud (AWS / Azure)", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-12" />`, color: "text-[#FF9900]" },
+      { name: "Docker", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3l8 4.5v9l-8 4.5L4 16.5v-9L12 3z M12 12l8-4.5 M12 12v9 M12 12L4 7.5" />`, color: "text-[#2496ED]" },
+      { name: "REST APIs / WebSockets", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M12 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M18 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M12 8v8" /><path d="M8 12h8" />`, color: "text-[#10B981]" },
+      { name: "Git / CI-CD", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M18 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 8v8" /><path d="M8 6h6v4" />`, color: "text-[#F05032]" }
     ]
   }
 };
