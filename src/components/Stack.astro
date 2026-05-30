@@ -1,0 +1,107 @@
+---
+import NodeJS from "./icons/Node.astro";
+import Angular from "./icons/Angular.astro";
+import OpenAiApi from "./icons/OpenAiApi.astro";
+import Sparkles from "./icons/Sparkles.astro";
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const STACK_ES = {
+  core: {
+    title: "Core",
+    items: [
+      { name: "Node.js", icon: NodeJS, color: "text-[#339933]" },
+      { name: "PHP (Laravel)", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M10 13.5v-3.5h2c.7 0 1 .3 1 1v0c0 .7 -.3 1 -1 1h-2" /><path d="M14 10v4h2" />`, color: "text-[#777BB4]" },
+      { name: "SQL / MySQL", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 16 0v-6" /><path d="M4 12v6a8 3 0 0 0 16 0v-6" />`, color: "text-[#00758F]" }
+    ]
+  },
+  frontend: {
+    title: "Frontend",
+    items: [
+      { name: "Angular", icon: Angular, color: "text-[#DD0031]" }
+    ]
+  },
+  ai: {
+    title: "AI & Tools",
+    items: [
+      { name: "OpenAI API / LLMs", icon: OpenAiApi, color: "text-[#000000] dark:text-white" },
+      { name: "Multi-agent workflows", icon: Sparkles, color: "text-[#8B5CF6]" },
+      { name: "Codex / AI-assisted", icon: Sparkles, color: "text-[#EC4899]" }
+    ]
+  },
+  other: {
+    title: "Otros",
+    items: [
+      { name: "REST APIs", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h18" /><path d="M12 3v18" /><path d="M7.5 7.5l9 9" /><path d="M7.5 16.5l9 -9" />`, color: "text-blue-500" },
+      { name: "Git", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M18 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 8v8" /><path d="M8 6h6v4" />`, color: "text-[#F05032]" }
+    ]
+  }
+};
+
+const STACK_EN = {
+  core: {
+    title: "Core",
+    items: [
+      { name: "Node.js", icon: NodeJS, color: "text-[#339933]" },
+      { name: "PHP (Laravel)", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M10 13.5v-3.5h2c.7 0 1 .3 1 1v0c0 .7 -.3 1 -1 1h-2" /><path d="M14 10v4h2" />`, color: "text-[#777BB4]" },
+      { name: "SQL / MySQL", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 16 0v-6" /><path d="M4 12v6a8 3 0 0 0 16 0v-6" />`, color: "text-[#00758F]" }
+    ]
+  },
+  frontend: {
+    title: "Frontend",
+    items: [
+      { name: "Angular", icon: Angular, color: "text-[#DD0031]" }
+    ]
+  },
+  ai: {
+    title: "AI & Tools",
+    items: [
+      { name: "OpenAI API / LLMs", icon: OpenAiApi, color: "text-[#000000] dark:text-white" },
+      { name: "Multi-agent workflows", icon: Sparkles, color: "text-[#8B5CF6]" },
+      { name: "Codex / AI-assisted", icon: Sparkles, color: "text-[#EC4899]" }
+    ]
+  },
+  other: {
+    title: "Others",
+    items: [
+      { name: "REST APIs", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12h18" /><path d="M12 3v18" /><path d="M7.5 7.5l9 9" /><path d="M7.5 16.5l9 -9" />`, color: "text-blue-500" },
+      { name: "Git", icon: null, svg: `<path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M18 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 8v8" /><path d="M8 6h6v4" />`, color: "text-[#F05032]" }
+    ]
+  }
+};
+
+const STACK = lang === "en" ? STACK_EN : STACK_ES;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+  {Object.entries(STACK).map(([key, category]) => (
+    <div class="p-6 bg-white/50 dark:bg-gray-800/30 border border-gray-200 dark:border-gray-700/50 rounded-2xl backdrop-blur-sm shadow-sm transition hover:shadow-md">
+      <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 border-b border-gray-100 dark:border-gray-700/50 pb-2">
+        {category.title}
+      </h3>
+      <ul class="space-y-3">
+        {category.items.map((item) => (
+          <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+            {item.icon ? (
+              <item.icon class={`size-6 ${item.color}`} />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class={`size-6 ${item.color}`}
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                set:html={item.svg}
+              />
+            )}
+            <span class="font-medium text-sm">{item.name}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</div>

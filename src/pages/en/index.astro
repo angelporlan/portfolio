@@ -4,9 +4,11 @@ import Layout from "@/layouts/Layout.astro";
 import AboutMe from "@/components/AboutMe.astro";
 import Briefcase from "@/components/icons/Briefcase.astro";
 import CodeIcon from "@/components/icons/Code.astro";
+import ToolIcon from "@/components/icons/System.astro";
 import Experience from "@/components/Experience.astro";
 import ProfileCheck from "@/components/icons/ProfileCheck.astro";
 import Projects from "@/components/Projects.astro";
+import Stack from "@/components/Stack.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 import Hero from "@/components/Hero.astro";
 import TitleSection from "@/components/TitleSection.astro";
@@ -17,11 +19,10 @@ const t = useTranslations(lang);
 ---
 
 <Layout
-  title="Ángel Porlán Portfolio - Web Developer and Programmer"
-  description="Hire Ángel to create your web application. Web Developer. Specialized in creating unique applications."
+  title="Ángel Porlán Portfolio - Full Stack Developer | AI-Oriented"
+  description="Hire Ángel Porlán to create your modern web applications with Artificial Intelligence integrations."
 >
   <main class="px-4">
-    <!-- <Ball/> -->
     <SectionContainer class="py-16 md:py-36">
       <Hero />
     </SectionContainer>
@@ -41,6 +42,14 @@ const t = useTranslations(lang);
         {t("section.projects")}
       </TitleSection>
       <Projects />
+    </SectionContainer>
+
+    <SectionContainer id="stack">
+      <TitleSection>
+        <ToolIcon class="size-8" />
+        {t("section.stack")}
+      </TitleSection>
+      <Stack />
     </SectionContainer>
 
     <SectionContainer id="sobre-mi">

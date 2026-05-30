@@ -9,6 +9,7 @@ import NodeJS from "./icons/Node.astro";
 import VueJS from "./icons/Vue.astro";
 import Angular from "./icons/Angular.astro";
 import OpenAiApi from "./icons/OpenAiApi.astro";
+import Sparkles from "./icons/Sparkles.astro";
 import { getLangFromUrl } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -26,88 +27,111 @@ const TAGS = {
   },
   VUE: {
     name: "Vue.js",
-    class: "bg-[#41B883] text-white text-white text-white flex items-center",
+    class: "bg-[#41B883] text-white flex items-center",
     icon: VueJS,
   },
   SYMFONY: {
     name: "Symfony",
-    class: "bg-[#000000] text-white text-white flex items-center",
+    class: "bg-[#000000] text-white flex items-center",
     icon: Symfony,
   },
   NodeJS: {
     name: "Node.js",
-    class: "bg-[#339933] ttext-white text-white flex items-center",
+    class: "bg-[#339933] text-white flex items-center gap-1",
     icon: NodeJS,
   },
   ANGULAR: {
     name: "Angular",
-    class: "bg-[#DD0031] text-white text-white flex items-center",
+    class: "bg-[#DD0031] text-white flex items-center gap-1",
     icon: Angular,
   },
   OPENAI_API: {
     name: "OpenAI API",
-    class: "bg-[#000] text-white text-white flex items-center",
+    class: "bg-[#000] text-white flex items-center",
     icon: OpenAiApi,
+  },
+  AI: {
+    name: "AI & LLMs",
+    class: "bg-[#6366F1] text-white flex items-center gap-1",
+    icon: Sparkles,
   },
 };
 
 const PROJECTS_ES = [
   {
+    title: "Matchply",
+    description:
+      "Plataforma inteligente que optimiza currículums automáticamente a partir de ofertas de empleo. Analiza la oferta en tiempo real mediante modelos de lenguaje, adapta el perfil del candidato de forma estratégica y facilita el seguimiento completo del proceso de postulación.",
+    github: "https://github.com/angelporlan",
+    link: "https://matchply.com",
+    image: "/projects/matchply.png",
+    tags: [TAGS.AI, TAGS.NodeJS],
+  },
+  {
     title: "NutriScan",
     description:
-      "Aplicación que analiza imágenes de alimentos y proporciona información nutricional detallada, ayudando a los usuarios a tomar decisiones saludables y a mantener un estilo de vida activo",
+      "Aplicación que analiza imágenes de alimentos y proporciona información nutricional detallada basada en IA, ayudando a tomar mejores decisiones alimentarias para un estilo de vida saludable.",
     github: "https://github.com/angelporlan",
     link: "https://paka-mu.vercel.app/",
     image: "/projects/nutriscan.png",
-    tags: [TAGS.OPENAI_API, TAGS.NodeJS],
+    tags: [TAGS.AI, TAGS.NodeJS],
   },
   {
     title: "StockifyHome",
     description:
-      "Gestor inteligente de productos del hogar con una interfaz moderna y simple, organiza el inventario y controla fechas de caducidad, personaliza categorías y mejora la planificación doméstica con una estructura clara y colaborativa",
+      "Gestor inteligente de productos del hogar con control de inventario integrado, alertas automáticas de fechas de caducidad y herramientas de organización colaborativa para optimizar el consumo doméstico.",
     github: "https://github.com/angelporlan/StockifyHome",
     link: "https://stockifyhome.vercel.app/login",
     image: "/projects/StockifyHome.png",
     tags: [TAGS.ANGULAR, TAGS.NodeJS],
   },
   {
-    title: "CV Harvard Generator",
+    title: "CV Generator",
     description:
-      "Generador de currículum profesional con un diseño elegante y minimalista, personaliza fuentes, colores manteniendo una estructura clara y profesional",
+      "Generador de currículums con diseño profesional minimalista y personalización dinámica automatizada mediante inteligencia artificial.",
     github: "https://github.com/angelporlan/api-cv-generator",
     link: "https://cv-harvard.vercel.app/",
     image: "/projects/cv_harvard.png",
-    tags: [TAGS.OPENAI_API, TAGS.NodeJS],
+    tags: [TAGS.AI, TAGS.NodeJS],
   },
 ];
 
 const PROJECTS_EN = [
   {
+    title: "Matchply",
+    description:
+      "Intelligent platform that automatically optimizes resumes based on job offers. It analyzes the job post in real-time using large language models, adapts the candidate's profile strategically, and enables comprehensive tracking of the application pipeline.",
+    github: "https://github.com/angelporlan",
+    link: "https://matchply.com",
+    image: "/projects/matchply.png",
+    tags: [TAGS.AI, TAGS.NodeJS],
+  },
+  {
     title: "NutriScan",
     description:
-      "Application that analyzes food images and provides detailed nutritional information, helping users make healthy decisions and maintain an active lifestyle",
+      "Application that analyzes food images and provides detailed nutritional information powered by AI, helping users make better eating choices for a healthy lifestyle.",
     github: "https://github.com/angelporlan",
     link: "https://paka-mu.vercel.app/",
     image: "/projects/nutriscan.png",
-    tags: [TAGS.OPENAI_API, TAGS.NodeJS],
+    tags: [TAGS.AI, TAGS.NodeJS],
   },
   {
     title: "StockifyHome",
     description:
-      "Intelligent home product manager with a modern and simple interface, organizes inventory and controls expiration dates, customizes categories, and improves home planning with a clear and collaborative structure",
+      "Smart home product manager with integrated inventory control, automatic expiration date alerts, and collaborative organization tools to optimize household consumption.",
     github: "https://github.com/angelporlan/StockifyHome",
     link: "https://stockifyhome.vercel.app/login",
     image: "/projects/StockifyHome.png",
     tags: [TAGS.ANGULAR, TAGS.NodeJS],
   },
   {
-    title: "CV Harvard Generator",
+    title: "CV Generator",
     description:
-      "Professional resume generator with an elegant and minimalist design, customizes fonts and colors while maintaining a clear and professional structure",
+      "Resume generator with a professional minimalist design and dynamic, automated customization powered by artificial intelligence.",
     github: "https://github.com/angelporlan/api-cv-generator",
     link: "https://cv-harvard.vercel.app/",
     image: "/projects/cv_harvard.png",
-    tags: [TAGS.OPENAI_API, TAGS.NodeJS],
+    tags: [TAGS.AI, TAGS.NodeJS],
   },
 ];
 

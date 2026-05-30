@@ -36,7 +36,7 @@ const t = useTranslations(lang);
   <div
     class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3"
   >
-    {description}
+    <div set:html={description} class="text-pretty" />
     {
       link && (
         <LinkInline href={link}>

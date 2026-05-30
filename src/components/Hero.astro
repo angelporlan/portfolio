@@ -6,6 +6,7 @@ import SocialPill from "@/components/SocialPill.astro";
 import CV from "./icons/CV.astro";
 import GitHub from "./icons/GitHub.astro";
 import CodeIcon from "./gsap-decoration/CodeIcon.astro";
+import Badge from "./Badge.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -56,9 +57,18 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="flex flex-col justify-center">
-      <div class="flex items-center gap-2"></div>
-    </div>
+    <!-- <div class="flex flex-col justify-center">
+      <div class="flex items-center gap-2">
+        <a
+          href="https://linkedin.com/in/angelporlan"
+          target="_blank"
+          rel="noopener"
+          class="flex justify-center items-center"
+        >
+          <Badge>{t("badge.available")}</Badge>
+        </a>
+      </div>
+    </div> -->
   </div>
 
   <div id="container">
@@ -67,20 +77,21 @@ const t = useTranslations(lang);
     >
       {t("hero.title")}
     </h1>
+    <h2
+      class="text-xl font-semibold text-yellow-500 dark:text-yellow-200 mt-2"
+    >
+      {t("hero.subtitle")}
+    </h2>
     <p
       id="animate-me"
-      class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+      class="mt-6 text-lg text-gray-800 dark:text-gray-300 text-pretty"
     >
-      <strong>{t("hero.description1")}</strong>
-      {t("hero.description2")}
+      <strong>{t("hero.description1")}</strong> {t("hero.description2")}
     </p>
     <p
-      id="animate-me"
-      class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
-      class="animate-me"
+      class="mt-6 text-md text-gray-600 dark:text-gray-400 font-medium"
     >
-      {t("hero.experience")}
-      <strong>Angular, Vue, Symfony y Node</strong>. {t("hero.location")}
+      <span>📍 {t("hero.location")}</span>
     </p>
     <nav class="flex flex-wrap gap-4 mt-8">
       <SocialPill href="mailto:angelporlandev@gmail.com">
