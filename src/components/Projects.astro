@@ -10,6 +10,7 @@ import VueJS from "./icons/Vue.astro";
 import Angular from "./icons/Angular.astro";
 import OpenAiApi from "./icons/OpenAiApi.astro";
 import Sparkles from "./icons/Sparkles.astro";
+import Python from "./icons/Python.astro";
 import { getLangFromUrl } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -55,6 +56,11 @@ const TAGS = {
     class: "bg-[#6366F1] text-white flex items-center gap-1",
     icon: Sparkles,
   },
+  PYTHON: {
+    name: "Python",
+    class: "bg-[#3776AB] text-white flex items-center gap-1",
+    icon: Python,
+  },
 };
 
 const PROJECTS_ES = [
@@ -65,7 +71,7 @@ const PROJECTS_ES = [
     github: "https://github.com/angelporlan",
     link: "https://matchply.com",
     image: "/projects/matchply.png",
-    tags: [TAGS.AI, TAGS.NodeJS],
+    tags: [TAGS.AI, TAGS.NEXT],
   },
   {
     title: "NutriScan",
@@ -82,7 +88,7 @@ const PROJECTS_ES = [
       "Dashboard interactivo para la monitorización de límites, consumo de tokens y análisis de uso de APIs de modelos de lenguaje (LLMs). Permite visualizar tendencias de input/output y gestionar hilos activos en tiempo real.",
     github: "https://github.com/angelporlan/codex-dashboard",
     image: "/projects/codex-dashboard.png",
-    tags: [TAGS.AI, TAGS.NEXT],
+    tags: [TAGS.AI, TAGS.PYTHON],
   },
 ];
 
@@ -94,7 +100,7 @@ const PROJECTS_EN = [
     github: "https://github.com/angelporlan",
     link: "https://matchply.com",
     image: "/projects/matchply.png",
-    tags: [TAGS.AI, TAGS.NodeJS],
+    tags: [TAGS.AI, TAGS.NEXT],
   },
   {
     title: "NutriScan",
@@ -111,7 +117,7 @@ const PROJECTS_EN = [
       "Interactive dashboard for monitoring API limits, token consumption, and usage analysis of large language models (LLMs). It visualizes input/output trends and tracks active conversation threads in real time.",
     github: "https://github.com/angelporlan/codex-dashboard",
     image: "/projects/codex-dashboard.png",
-    tags: [TAGS.AI, TAGS.NEXT],
+    tags: [TAGS.AI, TAGS.PYTHON],
   },
 ];
 
