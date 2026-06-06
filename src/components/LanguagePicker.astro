@@ -1,22 +1,40 @@
 ---
 import SpainFlag from "./icons/Spain.astro";
 import UKFlag from "./icons/UK.astro";
-import { languages } from "../i18n/ui";
 import { getLangFromUrl } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
+const { pathname, hash } = Astro.url;
 
-const LOCALES: Record<string, { name: string; icon: any; href: string }> = {
-    es: {
-        name: "Español",
-        icon: SpainFlag,
-        href: "/",
-    },
-    en: {
-        name: "English",
-        icon: UKFlag,
-        href: "/en",
-    },
+function getEquivalentPath(targetLang: string) {
+  if (targetLang === "es") {
+    if (pathname.startsWith("/en/blog")) {
+      return "/blog";
+    }
+    const cleanPath = pathname.replace(/^\/en/, "");
+    return (cleanPath || "/") + hash;
+  } else {
+    if (pathname.startsWith("/blog")) {
+      return "/en/blog";
+    }
+    if (pathname === "/") {
+      return "/en" + hash;
+    }
+    return `/en${pathname}${hash}`;
+  }
+}
+
+const LOCALES = {
+  es: {
+    name: "Español",
+    icon: SpainFlag,
+    href: getEquivalentPath("es"),
+  },
+  en: {
+    name: "English",
+    icon: UKFlag,
+    href: getEquivalentPath("en"),
+  },
 };
 
 const currentLocaleData = LOCALES[lang];
