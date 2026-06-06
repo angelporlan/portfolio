@@ -1,0 +1,149 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import TitleSection from "@/components/TitleSection.astro";
+import Book from "@/components/icons/Book.astro";
+import BlogCard from "@/components/BlogCard.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Get all non-draft Spanish posts, sorted newest to oldest
+const posts = (
+  await getCollection("blog", ({ data }) => !data.draft && data.lang === "es")
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Get all unique tags from Spanish posts
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags))];
+---
+
+<Layout
+  title="Blog · Ángel Porlán - Full Stack Developer | AI-Oriented"
+  description="Artículos, tutoriales e ideas sobre desarrollo de software, SaaS, integraciones de inteligencia artificial y DevOps."
+>
+  <main class="px-4">
+    <SectionContainer class="pt-32 pb-24 md:pt-40 md:pb-36">
+      <header class="max-w-2xl mb-12">
+        <TitleSection>
+          <Book class="size-8 text-blue-500" />
+          {t("nav.blog")}
+        </TitleSection>
+        <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed mt-2">
+          Comparto mis ideas, aprendizajes y guías sobre desarrollo de software, SaaS e integraciones de inteligencia artificial.
+        </p>
+      </header>
+
+      {
+        posts.length > 0 ? (
+          <div>
+            {/* Filter buttons */}
+            <div class="flex flex-wrap gap-x-3 gap-y-2 mb-12 pb-6 border-b border-gray-200/50 dark:border-gray-800/50">
+              <button
+                class="filter-btn active px-4 py-1.5 text-sm font-medium rounded-full bg-blue-500 text-white shadow-sm border border-blue-500 hover:scale-105 active:scale-95 transition-all duration-200"
+                data-tag="all"
+              >
+                {t("blog.all")}
+              </button>
+              {allTags.map((tag) => (
+                <button
+                  class="filter-btn px-4 py-1.5 text-sm font-medium rounded-full bg-white/50 dark:bg-gray-900/30 text-gray-700 dark:text-gray-300 border border-gray-200/50 dark:border-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800/50 hover:scale-105 active:scale-95 transition-all duration-200"
+                  data-tag={tag}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+
+            {/* Posts Grid */}
+            <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+              {posts.map((post) => (
+                <BlogCard post={post} />
+              ))}
+            </div>
+
+            {/* Dynamic Empty State */}
+            <div
+              id="empty-state"
+              class="hidden flex-col items-center justify-center py-20 text-center rounded-2xl border border-dashed border-gray-300 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/10"
+            >
+              <Book class="size-12 text-gray-400 dark:text-gray-600 mb-4" />
+              <p class="text-gray-600 dark:text-gray-400 font-medium">
+                {t("blog.empty")}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div class="flex flex-col items-center justify-center py-20 text-center rounded-2xl border border-dashed border-gray-300 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/10">
+            <Book class="size-12 text-gray-400 dark:text-gray-600 mb-4" />
+            <p class="text-gray-600 dark:text-gray-400 font-medium">
+              Pronto habrá nuevos artículos. ¡Vuelve más tarde!
+            </p>
+          </div>
+        )
+      }
+    </SectionContainer>
+  </main>
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const filters = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const posts = document.querySelectorAll<HTMLElement>("#posts-grid > article");
+    const emptyState = document.getElementById("empty-state");
+
+    if (filters.length === 0 || posts.length === 0) return;
+
+    filters.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const tag = btn.dataset.tag;
+
+        // Reset active filter button styles
+        filters.forEach((b) => {
+          b.classList.remove("active", "bg-blue-500", "text-white", "border-blue-500");
+          b.classList.add(
+            "bg-white/50",
+            "dark:bg-gray-900/30",
+            "text-gray-700",
+            "dark:text-gray-300",
+            "border-gray-200/50",
+            "dark:border-gray-800/50"
+          );
+        });
+
+        // Set active style for clicked button
+        btn.classList.add("active", "bg-blue-500", "text-white", "border-blue-500");
+        btn.classList.remove(
+          "bg-white/50",
+          "dark:bg-gray-900/30",
+          "text-gray-700",
+          "dark:text-gray-300",
+          "border-gray-200/50",
+          "dark:border-gray-800/50"
+        );
+
+        let visibleCount = 0;
+
+        posts.forEach((post) => {
+          const tags = post.dataset.tags?.split(",") || [];
+          if (tag === "all" || tags.includes(tag!)) {
+            post.style.display = "";
+            visibleCount++;
+          } else {
+            post.style.display = "none";
+          }
+        });
+
+        // Toggle empty state placeholder if all cards are filtered out
+        if (emptyState) {
+          if (visibleCount === 0) {
+            emptyState.style.display = "flex";
+          } else {
+            emptyState.style.display = "none";
+          }
+        }
+      });
+    });
+  });
+</script>
