@@ -5,6 +5,7 @@ date: 2025-06-01
 tags: ["SaaS", "Docker", "GitHub Actions", "Stripe", "OpenRouter", "LLM", "Full Stack"]
 lang: "en"
 draft: false
+translation: "2026-05-31/lanzamiento-matchply"
 ---
 
 A few months ago I had an idea that felt genuinely useful: what if you could paste a job offer and get your CV rewritten — not generically, but precisely adapted to that role? Not a template filler. A tool that actually reads the offer, understands the language, and rewrites your profile to match.

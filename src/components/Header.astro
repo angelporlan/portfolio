@@ -7,6 +7,11 @@ import {
 } from "../i18n/utils";
 import LanguagePicker from "./LanguagePicker.astro";
 
+interface Props {
+  translatedUrl?: string;
+}
+
+const { translatedUrl } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
@@ -63,7 +68,7 @@ const navItems = [
       ))
     }
     <ThemeToggle />
-    <LanguagePicker />
+    <LanguagePicker translatedUrl={translatedUrl} />
   </nav>
 </header>
 

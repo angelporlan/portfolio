@@ -24,11 +24,14 @@ const formattedDate = post.data.date.toLocaleDateString(lang === "es" ? "es-ES" 
   month: "long",
   day: "numeric",
 });
+
+const translatedUrl = post.data.translation ? `/blog/${post.data.translation}` : undefined;
 ---
 
 <Layout
   title={`${post.data.title} · Ángel Porlán's Blog`}
   description={post.data.subtitle}
+  translatedUrl={translatedUrl}
 >
   <main class="px-4">
     <SectionContainer class="py-24 md:py-36">
