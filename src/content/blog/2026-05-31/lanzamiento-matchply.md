@@ -1,7 +1,7 @@
 ---
 title: "Lancé mi primer SaaS en producción — esto es todo lo que hay detrás"
 subtitle: "Matchply ya está en producción. Suscripciones con Stripe, Docker, VPS propio, CI/CD con GitHub Actions y una capa de IA con enrutamiento multi-proveedor. Así fue el proceso."
-date: 2025-06-01
+date: 2026-05-31
 tags: ["SaaS", "Docker", "GitHub Actions", "Stripe", "OpenRouter", "LLM", "Full Stack"]
 lang: "es"
 draft: false

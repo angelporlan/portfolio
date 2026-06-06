@@ -1,7 +1,7 @@
 ---
 title: "I built and shipped a SaaS in production — here's the full stack behind it"
 subtitle: "Matchply is live. Stripe subscriptions, Docker, a self-hosted VPS, GitHub Actions CI/CD, and an LLM layer with multi-provider routing. This is how it came together."
-date: 2025-06-01
+date: 2026-05-31
 tags: ["SaaS", "Docker", "GitHub Actions", "Stripe", "OpenRouter", "LLM", "Full Stack"]
 lang: "en"
 draft: false
