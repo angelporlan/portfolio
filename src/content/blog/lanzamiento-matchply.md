@@ -1,49 +1,49 @@
 ---
-title: "Cómo construí y lancé un SaaS en producción"
-subtitle: "Stripe, Docker, GitHub Actions, OpenRouter — el stack completo detrás de Matchply"
-date: 2026-06-06
-tags: ["SaaS", "Docker", "IA y LLMs", "Stripe"]
+title: "Lancé mi primer SaaS en producción, esto es todo lo que hay detrás"
+subtitle: "Matchply ya está en producción. Suscripciones con Stripe, Docker, VPS propio, CI/CD con GitHub Actions y una capa de IA con enrutamiento multi-proveedor. Así fue el proceso."
+date: 2026-05-31
+tags: ["SaaS", "Docker", "GitHub Actions", "Stripe", "OpenRouter", "LLM", "Full Stack"]
 lang: "es"
 draft: false
 ---
 
-Crear y lanzar un producto de software como servicio (SaaS) es un proceso increíble que pone a prueba todas las habilidades de un desarrollador. Hace poco publiqué **Matchply**, una plataforma que optimiza currículums de forma automatizada mediante modelos de lenguaje artificial para adaptarlos a las ofertas de empleo.
+Hace unos meses tuve una idea que me pareció genuinamente útil: ¿y si pudieras pegar una oferta de trabajo y obtener tu CV reescrito, no de forma genérica, sino adaptado con precisión a ese puesto? No un rellena-plantillas. Una herramienta que lee la oferta, entiende el lenguaje y reescribe tu perfil para encajar.
 
-En este artículo, comparto las decisiones de arquitectura y tecnologías principales detrás del desarrollo del proyecto.
+Esa idea se convirtió en Matchply. Y hoy está corriendo en producción, con usuarios reales, suscripciones reales e infraestructura que controlo de principio a fin.
 
-## Arquitectura e Infraestructura
+Esto es lo que hizo falta para llegar aquí.
 
-Para garantizar que el despliegue fuese consistente en cualquier entorno, empaqueté toda la aplicación usando Docker:
+## El problema que vale la pena resolver
 
-- **Frontend**: Una SPA rápida construida con Next.js que gestiona el panel y los flujos de usuario.
-- **Backend API**: Servicios optimizados en Node.js que ejecutan los algoritmos de parseo y optimización.
-- **Base de Datos**: PostgreSQL para almacenar los perfiles de los usuarios y el historial de aplicaciones.
+Enviar el mismo CV a cincuenta ofertas es ineficaz, todo el mundo lo sabe. Pero adaptar el CV manualmente para cada candidatura requiere un tiempo que casi nadie tiene. La brecha entre saber lo que hay que hacer y realmente hacerlo es donde vive Matchply. Automatiza el proceso de adaptación para que puedas aplicar de forma más inteligente.
 
-### Configuración de Docker Compose
+> "El objetivo no era construir algo ingenioso. Era construir algo por lo que la gente pagara."
 
-Así es como estructuré el entorno de contenedores:
+## La capa de infraestructura
 
-```yaml
-services:
-  web:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-      - DATABASE_URL=postgresql://user:pass@db:5432/matchply
-```
+Quería ser dueño del stack de despliegue, no porque sea más fácil (no lo es), sino porque me da control total sobre costes, rendimiento y datos. Matchply corre en un VPS propio, containerizado con Docker. Cada push a main dispara un pipeline de GitHub Actions que construye la imagen, ejecuta checks y despliega automáticamente. Sin downtime. Sin SSH manual. Limpio.
 
-## Integración de IA con OpenRouter
+* **Runtime:** Docker + VPS
+* **CI/CD:** GitHub Actions
+* **Pagos:** Stripe
+* **Enrutamiento IA:** OpenRouter
 
-En lugar de vincular la plataforma a una única API de LLM (como la de OpenAI), utilicé **OpenRouter**. Esto permite a Matchply cambiar dinámicamente de modelo según el costo, ventana de contexto y complejidad de la oferta de trabajo:
+## Pagos que funcionan de verdad
 
-1. **Preanálisis rápido**: Mediante modelos ligeros (como Llama 3) para mapear habilidades clave.
-2. **Reescritura estratégica**: Mediante modelos avanzados (como GPT-4o) para redactar descripciones de experiencia que coincidan con la oferta de trabajo.
+Stripe gestiona toda la capa de suscripciones. Planes mensuales y anuales, eventos webhook para cambios de estado, y features bloqueadas por plan en toda la app. Hacerlo bien, gestionar edge cases como pagos fallidos, cancelaciones y cambios de plan, llevó más tiempo del esperado. Pero hacerlo bien desde el principio significa no tener que retocarlo después.
 
-## Automatización y Despliegue (CI/CD)
+## La capa de IA: una API, múltiples proveedores
 
-Cada commit subido a la rama principal activa un flujo de trabajo en **GitHub Actions** que se encarga de:
-- Pasar el linter de TypeScript y verificar que los tests unitarios sean exitosos.
-- Reconstruir las imágenes de Docker optimizadas.
-- Desplegar los nuevos contenedores en el servidor VPS de producción de forma automática.
+Esta es la parte de la que más orgulloso estoy a nivel de arquitectura. En lugar de hardcodear un único proveedor de IA, Matchply enruta todas las llamadas LLM a través de OpenRouter. Esto me da acceso a decenas de modelos, GPT, Claude, Gemini y otros, a través de una API unificada.
+
+Más importante aún, me permite servir modelos distintos según el plan de suscripción. Los usuarios del plan gratuito obtienen un modelo capaz pero más ligero. Los de pago acceden a las opciones más potentes. La lógica de enrutamiento vive en un único lugar y añadir o cambiar modelos no requiere tocar nada más en el codebase.
+
+## Tres modos de optimización
+
+Matchply ofrece tres estrategias de adaptación del CV. La primera permanece fiel a tu experiencia original. La segunda adapta el enfoque y el lenguaje para encajar con la oferta. La tercera aprieta al máximo las habilidades transferibles y el potencial, útil cuando estás pivotando o apuntando a un rol más ambicioso. Cada modo produce un output significativamente diferente a partir del mismo CV de entrada.
+
+## Lo que aprendí lanzando en solitario
+
+Construir y desplegar un producto completo solo te obliga a ocuparte de cada capa, auth, facturación, integración IA, despliegue, manejo de errores. No puedes saltarte las partes aburridas porque no hay nadie más para hacerlas. Esa restricción es también lo que lo convierte en una educación real.
+
+Matchply está en producción en [matchply.com](https://matchply.com). Si estás buscando trabajo, pruébalo.
