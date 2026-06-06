@@ -47,4 +47,4 @@ Matchply offers three CV adaptation strategies. The first stays faithful to your
 
 Building and deploying a full product alone forces you to care about every layer — auth, billing, AI integration, deployment, error handling. You can't skip the boring parts because there's no one else to handle them. That constraint is also what makes it a real education.
 
-Matchply is live at [matchply.com](https://matchply.com). If you're job hunting, try it.
+Matchply is live at <a href="https://matchply.com" target="_blank" rel="noopener noreferrer">matchply.com</a>. If you're job hunting, try it.

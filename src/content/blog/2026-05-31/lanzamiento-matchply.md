@@ -47,4 +47,4 @@ Matchply ofrece tres estrategias de adaptación del CV. La primera permanece fie
 
 Construir y desplegar un producto completo solo te obliga a ocuparte de cada capa — auth, facturación, integración IA, despliegue, manejo de errores. No puedes saltarte las partes aburridas porque no hay nadie más para hacerlas. Esa restricción es también lo que lo convierte en una educación real.
 
-Matchply está en producción en [matchply.com](https://matchply.com). Si estás buscando trabajo, pruébalo.
+Matchply está en producción en <a href="https://matchply.com" target="_blank" rel="noopener noreferrer">matchply.com</a>. Si estás buscando trabajo, pruébalo.
