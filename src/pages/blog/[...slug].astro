@@ -111,30 +111,33 @@ const translatedUrl = post.data.translation ? `/en/blog/${post.data.translation}
       overlay.className = "zoom-overlay";
       overlay.innerHTML = '<img src="" alt="Zoomed Image" />';
       document.body.appendChild(overlay);
-
-      overlay.addEventListener("click", () => {
-        overlay.classList.remove("active");
-      });
     }
 
-    const zoomImg = overlay.querySelector("img");
-
-    // Add click listener to all post images using event delegation on the container
-    const container = document.querySelector(".prose-content");
-    if (container) {
-      container.addEventListener("click", (e) => {
-        const target = e.target as HTMLElement;
-        if (target && target.tagName === "IMG") {
-          e.preventDefault();
-          const src = target.getAttribute("src");
-          const alt = target.getAttribute("alt") || "Zoomed Image";
-          if (zoomImg && src) {
-            zoomImg.setAttribute("src", src);
-            zoomImg.setAttribute("alt", alt);
-            overlay.classList.add("active");
-          }
-        }
+    const currentOverlay = overlay;
+    if (currentOverlay) {
+      currentOverlay.addEventListener("click", () => {
+        currentOverlay.classList.remove("active");
       });
+
+      const zoomImg = currentOverlay.querySelector("img");
+
+      // Add click listener to all post images using event delegation on the container
+      const container = document.querySelector(".prose-content");
+      if (container) {
+        container.addEventListener("click", (e) => {
+          const target = e.target as HTMLElement;
+          if (target && target.tagName === "IMG") {
+            e.preventDefault();
+            const src = target.getAttribute("src");
+            const alt = target.getAttribute("alt") || "Zoomed Image";
+            if (zoomImg && src) {
+              zoomImg.setAttribute("src", src);
+              zoomImg.setAttribute("alt", alt);
+              currentOverlay.classList.add("active");
+            }
+          }
+        });
+      }
     }
 
     const headings = Array.from(document.querySelectorAll(".prose-content h2"));
