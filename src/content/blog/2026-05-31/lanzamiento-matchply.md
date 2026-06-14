@@ -15,6 +15,8 @@ Esa idea se convirtió en Matchply. Y hoy está corriendo en producción, con us
 
 Esto es lo que hizo falta para llegar aquí.
 
+![Optimización de CV en tiempo real con IA en Matchply](./downloaded.gif)
+
 ## El problema que vale la pena resolver
 
 Enviar el mismo CV a cincuenta ofertas es ineficaz, todo el mundo lo sabe. Pero adaptar el CV manualmente para cada candidatura requiere un tiempo que casi nadie tiene. La brecha entre saber lo que hay que hacer y realmente hacerlo es donde vive Matchply. Automatiza el proceso de adaptación para que puedas aplicar de forma más inteligente.
@@ -34,15 +36,24 @@ Quería ser dueño del stack de despliegue, no porque sea más fácil (no lo es)
 
 Stripe gestiona toda la capa de suscripciones. Planes mensuales y anuales, eventos webhook para cambios de estado, y features bloqueadas por plan en toda la app. Hacerlo bien, gestionar edge cases como pagos fallidos, cancelaciones y cambios de plan, llevó más tiempo del esperado. Pero hacerlo bien desde el principio significa no tener que retocarlo después.
 
+![Transacciones reales gestionadas con Stripe en Matchply](./stripe-transactions.jpg)
+
+
 ## La capa de IA: una API, múltiples proveedores
 
 Esta es la parte de la que más orgulloso estoy a nivel de arquitectura. En lugar de hardcodear un único proveedor de IA, Matchply enruta todas las llamadas LLM a través de OpenRouter. Esto me da acceso a decenas de modelos, GPT, Claude, Gemini y otros, a través de una API unificada.
 
 Más importante aún, me permite servir modelos distintos según el plan de suscripción. Los usuarios del plan gratuito obtienen un modelo capaz pero más ligero. Los de pago acceden a las opciones más potentes. La lógica de enrutamiento vive en un único lugar y añadir o cambiar modelos no requiere tocar nada más en el codebase.
 
+![Configuración del motor de IA en Matchply](./ai-engine-config.jpg)
+
+
 ## Tres modos de optimización
 
 Matchply ofrece tres estrategias de adaptación del CV. La primera permanece fiel a tu experiencia original. La segunda adapta el enfoque y el lenguaje para encajar con la oferta. La tercera aprieta al máximo las habilidades transferibles y el potencial, útil cuando estás pivotando o apuntando a un rol más ambicioso. Cada modo produce un output significativamente diferente a partir del mismo CV de entrada.
+
+![Modos de optimización inteligente de CV en Matchply](./optimization-modes.jpg)
+
 
 ## Lo que aprendí lanzando en solitario
 

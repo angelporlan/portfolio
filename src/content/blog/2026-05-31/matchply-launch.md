@@ -15,6 +15,8 @@ That idea became Matchply. And today it's running in production, with real users
 
 Here's what it took to get there.
 
+![Real-time AI CV optimization in Matchply](./downloaded.gif)
+
 ## The problem worth solving
 
 Sending the same CV to fifty job offers is ineffective, everyone knows that. But tailoring a CV manually for each application takes time most people don't have. The gap between knowing what to do and actually doing it is where Matchply lives. It automates the adaptation process so you can apply smarter, not harder.
@@ -34,15 +36,24 @@ I wanted to own the deployment stack, not because it's easier (it isn't), but be
 
 Stripe handles the subscription layer. Monthly and annual plans, webhook events for subscription state changes, and plan-gated features throughout the app. Getting this right, handling edge cases like failed payments, cancellations, and plan upgrades, took longer than I expected. But doing it properly from the start meant I didn't have to revisit it later.
 
+![Real Stripe transactions processed in Matchply](./stripe-transactions.jpg)
+
+
 ## The AI layer: one API, multiple providers
 
 This is the part I'm most proud of architecturally. Instead of hardcoding a single AI provider, Matchply routes all LLM calls through OpenRouter. This gives me access to dozens of models, GPT, Claude, Gemini, and others, through a single, unified API.
 
 More importantly, it lets me serve different models to different subscription tiers. Free users get a capable but lighter model. Paid users get access to the most powerful options. The routing logic lives in one place, and swapping or adding models requires zero changes to the rest of the codebase.
 
+![AI engine configuration in Matchply](./ai-engine-config.jpg)
+
+
 ## Three optimization modes
 
 Matchply offers three CV adaptation strategies. The first stays faithful to your original experience. The second adapts the framing and language to match the offer. The third pushes hard on transferable skills and potential, useful when you're pivoting or applying to a stretch role. Each mode produces a meaningfully different output from the same input CV.
+
+![Matchply CV optimization modes](./optimization-modes.jpg)
+
 
 ## What I learned shipping solo
 
