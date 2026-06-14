@@ -1,7 +1,7 @@
 ---
 title: "How I automated Codex thread management"
 subtitle: "A few days ago, people started talking about one of the most underrated and powerful features of Codex: the ability to autonomously manage its own conversation threads."
-date: 2026-06-07
+date: 2026-06-14
 tags: ["Codex", "Docker", "Git", "Automation", "Worktree"]
 lang: "en"
 draft: false
