@@ -6,6 +6,7 @@ tags: ["Codex", "Docker", "Git", "Automation", "Worktree"]
 lang: "en"
 draft: false
 translation: "2026-06-14/como-automatice-gestion-hilos-codex"
+cover: "./codex-threads.png"
 ---
 
 A few days ago, people started talking about one of the most underrated and powerful features of Codex: the ability to autonomously manage its own conversation threads.

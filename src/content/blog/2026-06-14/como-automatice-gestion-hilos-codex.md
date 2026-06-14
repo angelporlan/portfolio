@@ -6,6 +6,7 @@ tags: ["Codex", "Docker", "Git", "Automation", "Worktree"]
 lang: "es"
 draft: false
 translation: "2026-06-14/how-i-automated-codex-thread-management"
+cover: "./codex-threads.png"
 ---
 
 Hace unos días se empezó a hablar de una de las funciones más infravaloradas y potentes de Codex: la capacidad de gestionar sus propios hilos de conversación (threads) de forma autónoma.
