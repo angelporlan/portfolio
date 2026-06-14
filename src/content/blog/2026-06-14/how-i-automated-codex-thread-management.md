@@ -6,7 +6,7 @@ tags: ["Codex", "Docker", "Git", "Automation", "Worktree"]
 lang: "en"
 draft: false
 translation: "2026-06-14/como-automatice-gestion-hilos-codex"
-cover: "./codex-threads.png"
+cover: "./codex-threads.jpg"
 ---
 
 A few days ago, people started talking about one of the most underrated and powerful features of Codex: the ability to autonomously manage its own conversation threads.
@@ -27,7 +27,7 @@ The configuration required isolating the Git identity of this personal project f
 
 ## Orchestrating the Backlog in Parallel
 
-![Sidebar with demo-subagents](./demo-subagents-sidebar.png)
+![Sidebar with demo-subagents](./demo-subagents-sidebar.jpg)
 
 I passed a single master prompt to the coordinator thread with 5 production-level requirements to initialize the project:
 
@@ -49,7 +49,7 @@ In a matter of a couple of minutes, the application's sidebar became an autonomo
 
 ### Search results: 5 Open Issues
 
-![Search results showing 5 open GitHub issues](./github-issues-open.png)
+![Search results showing 5 open GitHub issues](./github-issues-open.jpg)
 
 1. #1 Configure a Dockerfile (node:20-alpine) and a development docker-compose.yml with local volumes to allow live-reload and an anonymous volume for node_modules.
 2. #2 Statically structure the package.json (Express, Zod, TypeScript, ts-node-dev) and create the base server with a GET /health endpoint.

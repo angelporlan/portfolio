@@ -6,7 +6,7 @@ tags: ["Codex", "Docker", "Git", "Automation", "Worktree"]
 lang: "es"
 draft: false
 translation: "2026-06-14/how-i-automated-codex-thread-management"
-cover: "./codex-threads.png"
+cover: "./codex-threads.jpg"
 ---
 
 Hace unos días se empezó a hablar de una de las funciones más infravaloradas y potentes de Codex: la capacidad de gestionar sus propios hilos de conversación (threads) de forma autónoma.
@@ -27,7 +27,7 @@ La configuración requería aislar la identidad de Git de este proyecto personal
 
 ## Orquestando el Backlog en Paralelo
 
-![Sidebar con demo-subagents](./demo-subagents-sidebar.png)
+![Sidebar con demo-subagents](./demo-subagents-sidebar.jpg)
 
 Le pasé un único prompt maestro al hilo coordinador con 5 requerimientos de nivel de producción para inicializar el proyecto:
 
@@ -49,7 +49,7 @@ En cuestión de un par de minutos, la barra lateral de la aplicación se convirt
 
 ### Search results: 5 Open Issues
 
-![Búsqueda de issues en GitHub](./github-issues-open.png)
+![Búsqueda de issues en GitHub](./github-issues-open.jpg)
 
 1. #1 Configurar un Dockerfile (node:20-alpine) y un docker-compose.yml de desarrollo con volúmenes locales para permitir live-reload y volumen anónimo para node_modules.
 2. #2 Estructurar estáticamente el package.json (Express, Zod, TypeScript, ts-node-dev) y crear el servidor base con un endpoint GET /health.

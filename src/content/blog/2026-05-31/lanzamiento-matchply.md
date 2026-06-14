@@ -6,7 +6,7 @@ tags: ["SaaS", "Docker", "GitHub Actions", "Stripe", "OpenRouter", "LLM", "Full 
 lang: "es"
 draft: false
 translation: "2026-05-31/matchply-launch"
-cover: "./matchply-launch.png"
+cover: "./matchply-launch.jpg"
 ---
 
 Hace unos meses tuve una idea que me pareció genuinamente útil: ¿y si pudieras pegar una oferta de trabajo y obtener tu CV reescrito, no de forma genérica, sino adaptado con precisión a ese puesto? No un rellena-plantillas. Una herramienta que lee la oferta, entiende el lenguaje y reescribe tu perfil para encajar.
