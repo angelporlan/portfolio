@@ -175,6 +175,31 @@ const translatedUrl = post.data.translation ? `/en/blog/${post.data.translation}
 </script>
 
 <style>
+  .prose-content :global(.benchmark-table) {
+    @apply my-8 overflow-x-auto;
+  }
+  .prose-content :global(.benchmark-table table) {
+    @apply w-full text-sm text-left text-gray-700;
+    min-width: 520px;
+  }
+  .prose-content :global(.benchmark-table th),
+  .prose-content :global(.benchmark-table td) {
+    @apply px-3 py-3 border-b border-gray-200;
+  }
+  .prose-content :global(.benchmark-table th) {
+    @apply font-semibold text-gray-800 bg-gray-50;
+  }
+  :global(.dark) .prose-content :global(.benchmark-table table) {
+    @apply text-gray-300;
+  }
+  :global(.dark) .prose-content :global(.benchmark-table th),
+  :global(.dark) .prose-content :global(.benchmark-table td) {
+    @apply border-gray-800;
+  }
+  :global(.dark) .prose-content :global(.benchmark-table th) {
+    @apply text-gray-100 bg-gray-900;
+  }
+
   .prose-content :global(h2) {
     @apply text-2xl font-bold mt-10 mb-4 text-gray-800 scroll-m-20;
   }
