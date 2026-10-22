@@ -26,6 +26,10 @@ const formattedDate = post.data.date.toLocaleDateString(lang === "es" ? "es-ES" 
   day: "numeric",
 });
 
+const actualPublishedDate = post.data.publishedAt?.toLocaleDateString(lang === "es" ? "es-ES" : "en-US", {
+  year: "numeric", month: "long", day: "numeric",
+});
+
 const translatedUrl = post.data.translation ? `/blog/${post.data.translation}` : undefined;
 ---
 
@@ -61,9 +65,17 @@ const translatedUrl = post.data.translation ? `/blog/${post.data.translation}` :
           <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed font-medium mb-4">
             {post.data.subtitle}
           </p>
-          <time datetime={post.data.date.toISOString()} class="text-sm text-gray-500 dark:text-gray-500">
-            Published on {formattedDate}
-          </time>
+          {post.data.publishedAt ? (
+            <p class="text-sm text-gray-500 dark:text-gray-400" data-retrospective>
+              Retrospective series · Issue dated <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
+              <span aria-hidden="true"> · </span>
+              Published on <time datetime={post.data.publishedAt.toISOString()}>{actualPublishedDate}</time>
+            </p>
+          ) : (
+            <time datetime={post.data.date.toISOString()} class="text-sm text-gray-500 dark:text-gray-500">
+              Published on {formattedDate}
+            </time>
+          )}
         </header>
 
         {/* 2-Column Grid */}
