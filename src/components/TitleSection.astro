@@ -1,5 +1,25 @@
+---
+interface Props {
+  class?: string;
+  className?: string;
+  number?: string;
+}
+
+const { class: classProp, className, number } = Astro.props;
+const customClass = classProp || className || "";
+---
+
 <h2
-	class={`flex items-center mb-6 text-3xl font-semibold gap-x-3 text-black/80 dark:text-white ${Astro.props.className}`}
+  class={`flex items-center mb-8 text-2xl md:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 after:content-[''] after:block after:h-[1px] after:flex-1 after:bg-gray-200 dark:after:bg-gray-800 after:ml-4 sm:after:ml-6 ${customClass}`}
 >
+  {
+    number && (
+      <span class="font-mono text-amber-500 dark:text-amber-400 text-lg md:text-xl font-medium mr-2.5">
+        {number}
+      </span>
+    )
+  }
+  <span class="flex items-center gap-x-3">
     <slot />
+  </span>
 </h2>
