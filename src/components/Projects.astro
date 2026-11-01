@@ -219,23 +219,9 @@ const PROJECTS = lang === "en" ? PROJECTS_EN : PROJECTS_ES;
             </div>
           )}
 
-          <div class="flex flex-col gap-8 md:flex-row md:items-start">
-            <div class="w-full md:w-1/2">
-              {isMockup || title.includes("Autonomous Software Factory") ? (
-                <OpenBotMockup lang={lang} />
-              ) : (
-                <div class="relative overflow-hidden rounded-xl border border-gray-200/80 dark:border-gray-800 bg-gray-100 dark:bg-gray-900 shadow-inner group">
-                  <img
-                    alt={`${title} preview`}
-                    class="object-cover object-top w-full h-56 transition duration-500 sm:h-64 group-hover:scale-105"
-                    loading="lazy"
-                    src={image}
-                  />
-                </div>
-              )}
-            </div>
-
-            <div class="w-full md:w-1/2 flex flex-col justify-between">
+          {isMockup || title.includes("Autonomous Software Factory") ? (
+            /* Autonomous Software Factory: Always 1 column layout for maximum breathing room */
+            <div class="flex flex-col gap-6 w-full">
               <div>
                 <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                   {title}
@@ -256,13 +242,20 @@ const PROJECTS = lang === "en" ? PROJECTS_EN : PROJECTS_ES;
                     </span>
                   ))}
                 </div>
+              </div>
 
-                <p class="mt-4 text-sm md:text-base leading-relaxed text-gray-700 dark:text-gray-300 text-pretty">
+              <!-- Full-width OpenBot mockup preview -->
+              <div class="w-full my-1">
+                <OpenBotMockup lang={lang} />
+              </div>
+
+              <div>
+                <p class="text-sm md:text-base leading-relaxed text-gray-700 dark:text-gray-300 text-pretty">
                   {description}
                 </p>
 
                 {highlights && highlights.length > 0 && (
-                  <ul class="mt-4 space-y-1.5 text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                  <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs md:text-sm text-gray-600 dark:text-gray-400">
                     {highlights.map((item) => (
                       <li class="flex items-center gap-2">
                         <span class="text-amber-500 font-bold">›</span>
@@ -271,30 +264,123 @@ const PROJECTS = lang === "en" ? PROJECTS_EN : PROJECTS_ES;
                     ))}
                   </ul>
                 )}
+
+                <footer class="flex flex-wrap items-center justify-start mt-6 gap-3">
+                  {caseStudy && (
+                    <LinkButton href={caseStudy} class="border-amber-500/30 text-amber-600 dark:text-amber-400 hover:bg-amber-500/10">
+                      <Book class="size-4" />
+                      {t("projects.case_study")}
+                    </LinkButton>
+                  )}
+                  {link && (
+                    <LinkButton href={link}>
+                      <Link class="size-4" />
+                      Preview
+                    </LinkButton>
+                  )}
+                  {github && (
+                    <LinkButton href={github}>
+                      <GitHub class="size-4" />
+                      Code
+                    </LinkButton>
+                  )}
+                </footer>
+              </div>
+            </div>
+          ) : (
+            /* LeadOn & Matchply: 2-column on desktop, full image display, zoom on click */
+            <div class="flex flex-col gap-8 md:flex-row md:items-start">
+              <div class="w-full md:w-1/2">
+                <div
+                  class="project-image-trigger group relative overflow-hidden rounded-xl border border-gray-200/80 dark:border-gray-800 bg-[#0e1015] shadow-md cursor-zoom-in"
+                  data-modal-image={image}
+                  data-modal-title={title}
+                  role="button"
+                  tabindex="0"
+                  aria-label={`Ver captura completa de ${title}`}
+                >
+                  <img
+                    alt={`${title} preview`}
+                    class="w-full h-auto max-h-[380px] object-contain object-top transition duration-300 group-hover:scale-[1.02]"
+                    loading="lazy"
+                    src={image}
+                  />
+                  <!-- Zoom overlay badge -->
+                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors flex items-center justify-center pointer-events-none">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 text-white text-xs font-medium backdrop-blur-md shadow-xl opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-1 group-hover:translate-y-0 border border-white/10">
+                      <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <line x1="11" y1="8" x2="11" y2="14"></line>
+                        <line x1="8" y1="11" x2="14" y2="11"></line>
+                      </svg>
+                      <span>{lang === "en" ? "Click to expand" : "Ampliar captura"}</span>
+                    </span>
+                  </div>
+                </div>
               </div>
 
-              <footer class="flex flex-wrap items-center justify-start mt-6 gap-3">
-                {caseStudy && (
-                  <LinkButton href={caseStudy} class="border-amber-500/30 text-amber-600 dark:text-amber-400 hover:bg-amber-500/10">
-                    <Book class="size-4" />
-                    {t("projects.case_study")}
-                  </LinkButton>
-                )}
-                {link && (
-                  <LinkButton href={link}>
-                    <Link class="size-4" />
-                    Preview
-                  </LinkButton>
-                )}
-                {github && (
-                  <LinkButton href={github}>
-                    <GitHub class="size-4" />
-                    Code
-                  </LinkButton>
-                )}
-              </footer>
+              <div class="w-full md:w-1/2 flex flex-col justify-between">
+                <div>
+                  <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    {title}
+                  </h3>
+                  {subtitle && (
+                    <p class="text-sm font-medium text-amber-600 dark:text-amber-400 mt-1">
+                      {subtitle}
+                    </p>
+                  )}
+
+                  <div class="flex flex-wrap gap-2 mt-3">
+                    {tags.map((tag) => (
+                      <span
+                        class={`inline-flex items-center gap-x-1.5 rounded-full text-xs font-medium ${tag.class} py-1 px-2.5`}
+                      >
+                        <tag.icon class="size-3.5" />
+                        {tag.name}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p class="mt-4 text-sm md:text-base leading-relaxed text-gray-700 dark:text-gray-300 text-pretty">
+                    {description}
+                  </p>
+
+                  {highlights && highlights.length > 0 && (
+                    <ul class="mt-4 space-y-1.5 text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                      {highlights.map((item) => (
+                        <li class="flex items-center gap-2">
+                          <span class="text-amber-500 font-bold">›</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+
+                <footer class="flex flex-wrap items-center justify-start mt-6 gap-3">
+                  {caseStudy && (
+                    <LinkButton href={caseStudy} class="border-amber-500/30 text-amber-600 dark:text-amber-400 hover:bg-amber-500/10">
+                      <Book class="size-4" />
+                      {t("projects.case_study")}
+                    </LinkButton>
+                  )}
+                  {link && (
+                    <LinkButton href={link}>
+                      <Link class="size-4" />
+                      Preview
+                    </LinkButton>
+                  )}
+                  {github && (
+                    <LinkButton href={github}>
+                      <GitHub class="size-4" />
+                      Code
+                    </LinkButton>
+                  )}
+                </footer>
+              </div>
             </div>
-          </div>
+          )}
         </article>
       )
     )
@@ -320,3 +406,104 @@ const PROJECTS = lang === "en" ? PROJECTS_EN : PROJECTS_ES;
     </LinkButton>
   </div>
 </div>
+
+<!-- Fullscreen Image Modal / Lightbox -->
+<div
+  id="project-image-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-md p-4 sm:p-8 transition-opacity duration-300 select-none"
+  role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+>
+  <!-- Backdrop Click Area -->
+  <div id="project-modal-backdrop" class="absolute inset-0 cursor-zoom-out"></div>
+
+  <!-- Close Button -->
+  <button
+    type="button"
+    id="project-modal-close"
+    class="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-neutral-900/80 hover:bg-neutral-800 text-white/80 hover:text-white border border-white/20 transition cursor-pointer shadow-lg"
+    aria-label="Cerrar imagen ampliada"
+  >
+    <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+
+  <!-- Content Box -->
+  <div class="relative z-10 flex flex-col items-center max-w-full max-h-full">
+    <img
+      id="project-modal-img"
+      src=""
+      alt=""
+      class="max-w-[94vw] max-h-[86vh] w-auto h-auto object-contain rounded-xl shadow-2xl border border-white/10"
+    />
+    <div
+      id="project-modal-caption"
+      class="mt-3 px-4 py-1.5 rounded-full bg-neutral-900/85 text-gray-200 text-xs font-mono border border-white/15 backdrop-blur-sm"
+    >
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupImageModal() {
+    const modal = document.getElementById("project-image-modal");
+    const modalImg = document.getElementById("project-modal-img") as HTMLImageElement | null;
+    const modalCaption = document.getElementById("project-modal-caption");
+    const modalClose = document.getElementById("project-modal-close");
+    const modalBackdrop = document.getElementById("project-modal-backdrop");
+    const triggers = document.querySelectorAll<HTMLElement>(".project-image-trigger");
+
+    if (!modal || !modalImg) return;
+
+    function openModal(src: string, title: string) {
+      if (!modal || !modalImg) return;
+      modalImg.src = src;
+      modalImg.alt = title;
+      if (modalCaption) modalCaption.textContent = title;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      if (!modal || !modalImg) return;
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      modal.setAttribute("aria-hidden", "true");
+      modalImg.src = "";
+      document.body.style.overflow = "";
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const src = trigger.getAttribute("data-modal-image");
+        const title = trigger.getAttribute("data-modal-title") || "";
+        if (src) openModal(src, title);
+      });
+      trigger.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          const src = trigger.getAttribute("data-modal-image");
+          const title = trigger.getAttribute("data-modal-title") || "";
+          if (src) openModal(src, title);
+        }
+      });
+    });
+
+    if (modalClose) modalClose.addEventListener("click", closeModal);
+    if (modalBackdrop) modalBackdrop.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+  }
+
+  setupImageModal();
+  document.addEventListener("astro:after-swap", setupImageModal);
+</script>
