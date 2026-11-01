@@ -13,6 +13,7 @@ import Sparkles from "./icons/Sparkles.astro";
 import Python from "./icons/Python.astro";
 import ReactIcon from "./icons/React.astro";
 import Book from "./icons/Book.astro";
+import OpenBotMockup from "./OpenBotMockup.astro";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -103,7 +104,7 @@ const PROJECTS_ES = [
     github: "https://github.com/angelporlan",
     link: "https://matchply.com",
     caseStudy: "/blog/2026-10-22/rendimiento-matchply-antes-despues",
-    image: "/projects/matchply.png",
+    image: "/projects/matchply.webp",
     tags: [TAGS.AI, TAGS.NEXT, TAGS.TAILWIND],
   },
   {
@@ -120,7 +121,7 @@ const PROJECTS_ES = [
     ],
     link: "https://leadonservice.com",
     caseStudy: "/blog/2026-08-23/nexo-leadon-experimento-crm-ia",
-    image: "/projects/leadon.png",
+    image: "/projects/leadon.webp",
     tags: [TAGS.AI, TAGS.NodeJS, TAGS.REACT_NATIVE, TAGS.REDIS, TAGS.MCP],
   },
   {
@@ -137,6 +138,7 @@ const PROJECTS_ES = [
     ],
     caseStudy: "/blog/2026-06-28/como-automatice-orquestacion-agentes",
     image: "/projects/software-factory.jpg",
+    isMockup: true,
     tags: [TAGS.AI, TAGS.OPENBOT, TAGS.PYTHON, TAGS.MCP],
   },
 ];
@@ -157,7 +159,7 @@ const PROJECTS_EN = [
     github: "https://github.com/angelporlan",
     link: "https://matchply.com",
     caseStudy: "/en/blog/2026-10-22/matchply-performance-before-after",
-    image: "/projects/matchply.png",
+    image: "/projects/matchply.webp",
     tags: [TAGS.AI, TAGS.NEXT, TAGS.TAILWIND],
   },
   {
@@ -174,7 +176,7 @@ const PROJECTS_EN = [
     ],
     link: "https://leadonservice.com",
     caseStudy: "/en/blog/2026-08-23/nexo-leadon-crm-ai-experiment",
-    image: "/projects/leadon.png",
+    image: "/projects/leadon.webp",
     tags: [TAGS.AI, TAGS.NodeJS, TAGS.REACT_NATIVE, TAGS.REDIS, TAGS.MCP],
   },
   {
@@ -191,6 +193,7 @@ const PROJECTS_EN = [
     ],
     caseStudy: "/en/blog/2026-06-28/how-i-automated-agent-orchestration",
     image: "/projects/software-factory.jpg",
+    isMockup: true,
     tags: [TAGS.AI, TAGS.OPENBOT, TAGS.PYTHON, TAGS.MCP],
   },
 ];
@@ -201,7 +204,7 @@ const PROJECTS = lang === "en" ? PROJECTS_EN : PROJECTS_ES;
 <div class="flex flex-col gap-y-12">
   {
     PROJECTS.map(
-      ({ featured, image, title, subtitle, description, highlights, tags, link, github, caseStudy }) => (
+      ({ featured, image, title, subtitle, description, highlights, tags, link, github, caseStudy, isMockup }) => (
         <article
           class={`relative rounded-2xl transition duration-300 p-6 md:p-8 ${
             featured
@@ -218,14 +221,18 @@ const PROJECTS = lang === "en" ? PROJECTS_EN : PROJECTS_ES;
 
           <div class="flex flex-col gap-8 md:flex-row md:items-start">
             <div class="w-full md:w-1/2">
-              <div class="relative overflow-hidden rounded-xl border border-gray-200/80 dark:border-gray-800 bg-gray-100 dark:bg-gray-900 shadow-inner group">
-                <img
-                  alt={`${title} preview`}
-                  class="object-cover object-top w-full h-56 transition duration-500 sm:h-64 group-hover:scale-105"
-                  loading="lazy"
-                  src={image}
-                />
-              </div>
+              {isMockup || title.includes("Autonomous Software Factory") ? (
+                <OpenBotMockup lang={lang} />
+              ) : (
+                <div class="relative overflow-hidden rounded-xl border border-gray-200/80 dark:border-gray-800 bg-gray-100 dark:bg-gray-900 shadow-inner group">
+                  <img
+                    alt={`${title} preview`}
+                    class="object-cover object-top w-full h-56 transition duration-500 sm:h-64 group-hover:scale-105"
+                    loading="lazy"
+                    src={image}
+                  />
+                </div>
+              )}
             </div>
 
             <div class="w-full md:w-1/2 flex flex-col justify-between">
