@@ -31,6 +31,9 @@ export const ui = {
         'blog.back': 'Volver al blog',
         'blog.empty': 'No se encontraron artículos con esta etiqueta.',
         'blog.all': 'Todos',
+        'projects.featured': 'Proyecto Destacado',
+        'projects.case_study': 'Caso de estudio',
+        'projects.view_blog': 'Ver análisis de arquitectura y benchmarks en el Blog',
     },
     en: {
         'nav.experience': 'Experience',
@@ -57,5 +60,8 @@ export const ui = {
         'blog.back': 'Back to blog',
         'blog.empty': 'No articles found with this tag.',
         'blog.all': 'All',
+        'projects.featured': 'Featured Project',
+        'projects.case_study': 'Case Study',
+        'projects.view_blog': 'Read architecture deep-dives & benchmarks on the Blog',
     },
 } as const;

@@ -93,9 +93,9 @@ const STACK = lang === "en" ? STACK_EN : STACK_ES;
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
   {Object.entries(STACK).map(([key, category]) => (
-    <div class="p-6 bg-white/50 dark:bg-gray-800/30 border border-gray-200 dark:border-gray-700/50 rounded-2xl backdrop-blur-sm shadow-sm transition hover:shadow-md">
-      <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4 border-b border-gray-100 dark:border-gray-700/50 pb-2">
-        {category.title}
+    <div class="p-6 bg-white/40 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 rounded-2xl backdrop-blur-sm shadow-sm transition duration-300 hover:border-amber-500/30 dark:hover:border-amber-400/20 hover:shadow-md">
+      <h3 class="text-base md:text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 border-b border-gray-100 dark:border-gray-800 pb-2 flex items-center justify-between">
+        <span>{category.title}</span>
       </h3>
       <ul class="space-y-3">
         {category.items.map((item) => (

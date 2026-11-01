@@ -1,12 +1,20 @@
 ---
-const { href } = Astro.props;
+interface Props {
+  href: string;
+  target?: string;
+  class?: string;
+}
+
+const { href, target, class: classProp } = Astro.props;
+const defaultTarget = target !== undefined ? target : (href.startsWith("http") ? "_blank" : undefined);
 ---
 
 <a
-    target="_blank"
-    href={href}
-    role="link"
-    class="inline-flex bg-gray-100 text-gray-800 border-gray-300 items-center justify-center gap-2 px-3 py-2 space-x-2 text-base transition dark:text-white dark:bg-gray-800 border dark:border-gray-600 focus-visible:ring-yellow-500/80 text-md hover:bg-gray-800 hover:border-gray-900 group max-w-fit rounded-xl hover:text-white focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black"
+  target={defaultTarget}
+  rel={defaultTarget === "_blank" ? "noopener noreferrer" : undefined}
+  href={href}
+  role="link"
+  class={`inline-flex items-center justify-center gap-2 px-3.5 py-2 text-sm md:text-base font-medium transition duration-200 border rounded-xl shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/80 bg-gray-100 hover:bg-gray-200 text-gray-800 border-gray-300 dark:bg-gray-800/80 dark:hover:bg-gray-700/80 dark:text-gray-100 dark:border-gray-700 active:scale-95 ${classProp || ""}`}
 >
-    <slot />
+  <slot />
 </a>
