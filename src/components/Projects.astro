@@ -11,6 +11,7 @@ import Angular from "./icons/Angular.astro";
 import OpenAiApi from "./icons/OpenAiApi.astro";
 import Sparkles from "./icons/Sparkles.astro";
 import Python from "./icons/Python.astro";
+import ReactIcon from "./icons/React.astro";
 import Book from "./icons/Book.astro";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "../i18n/utils";
 
@@ -64,6 +65,26 @@ const TAGS = {
     class: "bg-[#3776AB] text-white flex items-center gap-1",
     icon: Python,
   },
+  REACT_NATIVE: {
+    name: "React Native / Expo",
+    class: "bg-[#20232A] text-white flex items-center gap-1",
+    icon: ReactIcon,
+  },
+  REDIS: {
+    name: "Redis & BullMQ",
+    class: "bg-[#DC382D] text-white flex items-center gap-1",
+    icon: Sparkles,
+  },
+  MCP: {
+    name: "MCP Protocol",
+    class: "bg-[#0D9488] text-white flex items-center gap-1",
+    icon: Sparkles,
+  },
+  OPENBOT: {
+    name: "OpenBot Agents",
+    class: "bg-[#7C3AED] text-white flex items-center gap-1",
+    icon: Sparkles,
+  },
 };
 
 const PROJECTS_ES = [
@@ -84,6 +105,39 @@ const PROJECTS_ES = [
     caseStudy: "/blog/2026-10-22/rendimiento-matchply-antes-despues",
     image: "/projects/matchply.png",
     tags: [TAGS.AI, TAGS.NEXT, TAGS.TAILWIND],
+  },
+  {
+    featured: true,
+    title: "LeadOn",
+    subtitle: "CRM inteligente con IA para gestión de clientes y automatización de ventas",
+    description:
+      "Plataforma SaaS en producción con usuarios de pago orientada a la gestión comercial y automatización de flujos de clientes para freelancers y equipos de ventas. Co-fundado junto a Álvaro Vela (Sales), donde lidero la ingeniería de producto y la arquitectura: backend en Node/Express con colas asíncronas BullMQ y Redis, cliente móvil en Expo/React Native con sincronización offline-first, pagos vía Stripe Connect, OAuth 2.0 y servidor MCP para extender las capacidades con agentes de IA.",
+    highlights: [
+      "SaaS en producción real con usuarios activos de pago (leadonservice.com)",
+      "Arquitectura backend distribuida con colas asíncronas BullMQ y Redis",
+      "Aplicación móvil Expo / React Native con persistencia y sincronización offline-first",
+      "Servidor MCP nativo integrado para orquestación e interoperabilidad con IA",
+    ],
+    link: "https://leadonservice.com",
+    caseStudy: "/blog/2026-08-23/nexo-leadon-experimento-crm-ia",
+    image: "/projects/leadon.png",
+    tags: [TAGS.AI, TAGS.NodeJS, TAGS.REACT_NATIVE, TAGS.REDIS, TAGS.MCP],
+  },
+  {
+    featured: false,
+    title: "Autonomous Software Factory",
+    subtitle: "Ecosistema de ingeniería asistida por agentes autónomos sobre OpenBot",
+    description:
+      "Factoría de software distribuida basada en OpenBot que orquesta un equipo de agentes locales y en VPS (Product Lead, Full-Stack Dev, Research, Risk Sentinel y Telegram Orchestrator). Automatiza el ciclo completo de desarrollo: desde diagnóstico en caliente y testing hasta despliegues continuos auditados mediante Pull Requests, operando con herramientas del mundo real vía el estándar MCP.",
+    highlights: [
+      "Orquestación multi-agente con roles segregados y compuertas de verificación",
+      "Integración profunda con servidores MCP (Computer Use, GitHub API, VPS SSH)",
+      "Despliegues continuos en producción con auditoría y control de regresiones",
+      "Monitorización y control en tiempo real sincronizado vía Telegram",
+    ],
+    caseStudy: "/blog/2026-06-28/como-automatice-orquestacion-agentes",
+    image: "/projects/software-factory.jpg",
+    tags: [TAGS.AI, TAGS.OPENBOT, TAGS.PYTHON, TAGS.MCP],
   },
   {
     featured: false,
@@ -134,6 +188,39 @@ const PROJECTS_EN = [
     caseStudy: "/en/blog/2026-10-22/matchply-performance-before-after",
     image: "/projects/matchply.png",
     tags: [TAGS.AI, TAGS.NEXT, TAGS.TAILWIND],
+  },
+  {
+    featured: true,
+    title: "LeadOn",
+    subtitle: "AI-Driven CRM for Freelancers & Commercial Sales Automation",
+    description:
+      "Commercial SaaS platform with paying users designed for sales cycle acceleration and automated lead workflows. Co-founded with Álvaro Vela (Head of Sales), where I serve as Product Engineer leading the end-to-end architecture: Node/Express backend with BullMQ and Redis task queues, cross-platform Expo/React Native mobile app with offline-first synchronization, Stripe Connect payments, OAuth 2.0, and native MCP server for AI agent integration.",
+    highlights: [
+      "Live commercial SaaS with active paying clients (leadonservice.com)",
+      "Distributed backend architecture with BullMQ queues and Redis",
+      "Mobile client in Expo / React Native with offline-first synchronization",
+      "Native MCP (Model Context Protocol) server for AI agent extensibility",
+    ],
+    link: "https://leadonservice.com",
+    caseStudy: "/en/blog/2026-08-23/nexo-leadon-crm-ai-experiment",
+    image: "/projects/leadon.png",
+    tags: [TAGS.AI, TAGS.NodeJS, TAGS.REACT_NATIVE, TAGS.REDIS, TAGS.MCP],
+  },
+  {
+    featured: false,
+    title: "Autonomous Software Factory",
+    subtitle: "Multi-Agent Autonomous Software Engineering Ecosystem on OpenBot",
+    description:
+      "Distributed autonomous software engineering ecosystem built on OpenBot that coordinates local and VPS-based agents (Product Lead, Full-Stack Dev, Research, Risk Sentinel, and Telegram Orchestrator). Automates the complete development lifecycle: hot diagnostics, continuous testing, audited Pull Request releases, and real-world tools via the MCP standard.",
+    highlights: [
+      "Multi-agent orchestration with segregated responsibilities and verification gates",
+      "Deep integration with MCP servers (Computer Use, GitHub API, VPS SSH)",
+      "Automated production deployments and regression guardrails",
+      "Real-time monitoring and bi-directional control via Telegram",
+    ],
+    caseStudy: "/en/blog/2026-06-28/how-i-automated-agent-orchestration",
+    image: "/projects/software-factory.jpg",
+    tags: [TAGS.AI, TAGS.OPENBOT, TAGS.PYTHON, TAGS.MCP],
   },
   {
     featured: false,
